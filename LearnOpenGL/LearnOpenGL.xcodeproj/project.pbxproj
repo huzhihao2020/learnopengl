@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E0B20B627BFA44400BABA2F /* glad.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD3F1627BDE60D0039E0D8 /* glad.c */; };
+		7E0B20B927BFA44400BABA2F /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3EFE27BC1CA60039E0D8 /* CoreFoundation.framework */; platformFilter = maccatalyst; };
+		7E0B20BA27BFA44400BABA2F /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0227BC1DBD0039E0D8 /* libglfw.3.3.dylib */; };
+		7E0B20BB27BFA44400BABA2F /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0027BC1CD30039E0D8 /* OpenGL.framework */; };
+		7E0B20C227BFA4DD00BABA2F /* 3.Texture.exercise2.four-faces.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E0B20C127BFA4DD00BABA2F /* 3.Texture.exercise2.four-faces.cpp */; };
 		7EAD3EF727BC1C7F0039E0D8 /* 2.HelloTriangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD3EF627BC1C7F0039E0D8 /* 2.HelloTriangle.cpp */; };
 		7EAD3EFF27BC1CA60039E0D8 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3EFE27BC1CA60039E0D8 /* CoreFoundation.framework */; platformFilter = maccatalyst; };
 		7EAD3F0327BC1DBD0039E0D8 /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0227BC1DBD0039E0D8 /* libglfw.3.3.dylib */; };
@@ -25,6 +30,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		7E0B20BC27BFA44400BABA2F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		7EAD3EF127BC1C7F0039E0D8 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -59,6 +73,10 @@
 		7E0B20AF27BF419F00BABA2F /* wall.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wall.jpg; sourceTree = "<group>"; };
 		7E0B20B227BF469A00BABA2F /* 3.3.shader.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = 3.3.shader.fs; sourceTree = "<group>"; };
 		7E0B20B327BF469A00BABA2F /* 3.3.shader.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = 3.3.shader.vs; sourceTree = "<group>"; };
+		7E0B20C027BFA44400BABA2F /* 3.Texture.exercise2.four-faces */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "3.Texture.exercise2.four-faces"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E0B20C127BFA4DD00BABA2F /* 3.Texture.exercise2.four-faces.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "3.Texture.exercise2.four-faces.cpp"; sourceTree = "<group>"; };
+		7E0B20C327BFA80500BABA2F /* 3.3.exercise2.shader.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 3.3.exercise2.shader.fs; sourceTree = "<group>"; };
+		7E0B20C427BFA80500BABA2F /* 3.3.exercise2.shader.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 3.3.exercise2.shader.vs; sourceTree = "<group>"; };
 		7EAD3EF327BC1C7F0039E0D8 /* 2.HelloTriangle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = 2.HelloTriangle; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EAD3EF627BC1C7F0039E0D8 /* 2.HelloTriangle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = 2.HelloTriangle.cpp; sourceTree = "<group>"; };
 		7EAD3EFE27BC1CA60039E0D8 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -75,6 +93,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		7E0B20B827BFA44400BABA2F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E0B20B927BFA44400BABA2F /* CoreFoundation.framework in Frameworks */,
+				7E0B20BA27BFA44400BABA2F /* libglfw.3.3.dylib in Frameworks */,
+				7E0B20BB27BFA44400BABA2F /* OpenGL.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7EAD3EF027BC1C7F0039E0D8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -137,6 +165,7 @@
 				7EAD3EF327BC1C7F0039E0D8 /* 2.HelloTriangle */,
 				7EAD3F2727BDEC540039E0D8 /* 2.HelloTriangle-ShaderClass */,
 				7EAD3F3927BE1F060039E0D8 /* 3.Texture */,
+				7E0B20C027BFA44400BABA2F /* 3.Texture.exercise2.four-faces */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -181,6 +210,9 @@
 			isa = PBXGroup;
 			children = (
 				7E0B20B227BF469A00BABA2F /* 3.3.shader.fs */,
+				7E0B20C127BFA4DD00BABA2F /* 3.Texture.exercise2.four-faces.cpp */,
+				7E0B20C327BFA80500BABA2F /* 3.3.exercise2.shader.fs */,
+				7E0B20C427BFA80500BABA2F /* 3.3.exercise2.shader.vs */,
 				7E0B20B327BF469A00BABA2F /* 3.3.shader.vs */,
 				7EAD3F2C27BE1EFD0039E0D8 /* 3.Texture.cpp */,
 			);
@@ -190,6 +222,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		7E0B20B427BFA44400BABA2F /* 3.Texture.exercise2.four-faces */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7E0B20BD27BFA44400BABA2F /* Build configuration list for PBXNativeTarget "3.Texture.exercise2.four-faces" */;
+			buildPhases = (
+				7E0B20B527BFA44400BABA2F /* Sources */,
+				7E0B20B827BFA44400BABA2F /* Frameworks */,
+				7E0B20BC27BFA44400BABA2F /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "3.Texture.exercise2.four-faces";
+			productName = HelloTriangle;
+			productReference = 7E0B20C027BFA44400BABA2F /* 3.Texture.exercise2.four-faces */;
+			productType = "com.apple.product-type.tool";
+		};
 		7EAD3EF227BC1C7F0039E0D8 /* 2.HelloTriangle */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7EAD3EFA27BC1C7F0039E0D8 /* Build configuration list for PBXNativeTarget "2.HelloTriangle" */;
@@ -271,11 +320,21 @@
 				7EAD3EF227BC1C7F0039E0D8 /* 2.HelloTriangle */,
 				7EAD3F1B27BDEC540039E0D8 /* 2.HelloTriangle-ShaderClass */,
 				7EAD3F2D27BE1F060039E0D8 /* 3.Texture */,
+				7E0B20B427BFA44400BABA2F /* 3.Texture.exercise2.four-faces */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		7E0B20B527BFA44400BABA2F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E0B20C227BFA4DD00BABA2F /* 3.Texture.exercise2.four-faces.cpp in Sources */,
+				7E0B20B627BFA44400BABA2F /* glad.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7EAD3EEF27BC1C7F0039E0D8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -306,6 +365,26 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		7E0B20BE27BFA44400BABA2F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = "${inherited}";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		7E0B20BF27BFA44400BABA2F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = "${inherited}";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		7EAD3EF827BC1C7F0039E0D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -494,6 +573,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		7E0B20BD27BFA44400BABA2F /* Build configuration list for PBXNativeTarget "3.Texture.exercise2.four-faces" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E0B20BE27BFA44400BABA2F /* Debug */,
+				7E0B20BF27BFA44400BABA2F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		7EAD3EEE27BC1C7F0039E0D8 /* Build configuration list for PBXProject "LearnOpenGL" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
