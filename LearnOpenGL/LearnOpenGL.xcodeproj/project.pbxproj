@@ -12,6 +12,16 @@
 		7E0B20BA27BFA44400BABA2F /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0227BC1DBD0039E0D8 /* libglfw.3.3.dylib */; };
 		7E0B20BB27BFA44400BABA2F /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0027BC1CD30039E0D8 /* OpenGL.framework */; };
 		7E0B20C227BFA4DD00BABA2F /* 3.Texture.exercise2.four-faces.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E0B20C127BFA4DD00BABA2F /* 3.Texture.exercise2.four-faces.cpp */; };
+		7E0B20C827BFAD6600BABA2F /* glad.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD3F1627BDE60D0039E0D8 /* glad.c */; };
+		7E0B20CA27BFAD6600BABA2F /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3EFE27BC1CA60039E0D8 /* CoreFoundation.framework */; platformFilter = maccatalyst; };
+		7E0B20CB27BFAD6600BABA2F /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0227BC1DBD0039E0D8 /* libglfw.3.3.dylib */; };
+		7E0B20CC27BFAD6600BABA2F /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0027BC1CD30039E0D8 /* OpenGL.framework */; };
+		7E0B20D527BFAD7000BABA2F /* glad.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD3F1627BDE60D0039E0D8 /* glad.c */; };
+		7E0B20D727BFAD7000BABA2F /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3EFE27BC1CA60039E0D8 /* CoreFoundation.framework */; platformFilter = maccatalyst; };
+		7E0B20D827BFAD7000BABA2F /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0227BC1DBD0039E0D8 /* libglfw.3.3.dylib */; };
+		7E0B20D927BFAD7000BABA2F /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0027BC1CD30039E0D8 /* OpenGL.framework */; };
+		7E0B20E927BFBD5400BABA2F /* 3.Texture.exercise3.zoom-in-texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E0B20E727BFBD4B00BABA2F /* 3.Texture.exercise3.zoom-in-texture.cpp */; };
+		7E0B20EA27BFBD5F00BABA2F /* 3.Texture.exercise4.control-texture-mix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E0B20E827BFBD4B00BABA2F /* 3.Texture.exercise4.control-texture-mix.cpp */; };
 		7EAD3EF727BC1C7F0039E0D8 /* 2.HelloTriangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD3EF627BC1C7F0039E0D8 /* 2.HelloTriangle.cpp */; };
 		7EAD3EFF27BC1CA60039E0D8 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3EFE27BC1CA60039E0D8 /* CoreFoundation.framework */; platformFilter = maccatalyst; };
 		7EAD3F0327BC1DBD0039E0D8 /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0227BC1DBD0039E0D8 /* libglfw.3.3.dylib */; };
@@ -31,6 +41,24 @@
 
 /* Begin PBXCopyFilesBuildPhase section */
 		7E0B20BC27BFA44400BABA2F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		7E0B20CD27BFAD6600BABA2F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		7E0B20DA27BFAD7000BABA2F /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -77,6 +105,14 @@
 		7E0B20C127BFA4DD00BABA2F /* 3.Texture.exercise2.four-faces.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "3.Texture.exercise2.four-faces.cpp"; sourceTree = "<group>"; };
 		7E0B20C327BFA80500BABA2F /* 3.3.exercise2.shader.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 3.3.exercise2.shader.fs; sourceTree = "<group>"; };
 		7E0B20C427BFA80500BABA2F /* 3.3.exercise2.shader.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 3.3.exercise2.shader.vs; sourceTree = "<group>"; };
+		7E0B20D127BFAD6600BABA2F /* 3.Texture.exercise3.zoom-in-texture */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "3.Texture.exercise3.zoom-in-texture"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E0B20DE27BFAD7000BABA2F /* 3.Texture.exercise4.control-texture-mix */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "3.Texture.exercise4.control-texture-mix"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E0B20DF27BFAE6400BABA2F /* 3.3.exercise3.shader.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 3.3.exercise3.shader.vs; sourceTree = "<group>"; };
+		7E0B20E027BFAE6500BABA2F /* 3.3.exercise4.shader.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 3.3.exercise4.shader.fs; sourceTree = "<group>"; };
+		7E0B20E127BFAE6500BABA2F /* 3.3.exercise3.shader.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 3.3.exercise3.shader.fs; sourceTree = "<group>"; };
+		7E0B20E227BFAE6500BABA2F /* 3.3.exercise4.shader.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 3.3.exercise4.shader.vs; sourceTree = "<group>"; };
+		7E0B20E727BFBD4B00BABA2F /* 3.Texture.exercise3.zoom-in-texture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "3.Texture.exercise3.zoom-in-texture.cpp"; sourceTree = "<group>"; };
+		7E0B20E827BFBD4B00BABA2F /* 3.Texture.exercise4.control-texture-mix.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "3.Texture.exercise4.control-texture-mix.cpp"; sourceTree = "<group>"; };
 		7EAD3EF327BC1C7F0039E0D8 /* 2.HelloTriangle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = 2.HelloTriangle; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EAD3EF627BC1C7F0039E0D8 /* 2.HelloTriangle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = 2.HelloTriangle.cpp; sourceTree = "<group>"; };
 		7EAD3EFE27BC1CA60039E0D8 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -100,6 +136,26 @@
 				7E0B20B927BFA44400BABA2F /* CoreFoundation.framework in Frameworks */,
 				7E0B20BA27BFA44400BABA2F /* libglfw.3.3.dylib in Frameworks */,
 				7E0B20BB27BFA44400BABA2F /* OpenGL.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E0B20C927BFAD6600BABA2F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E0B20CA27BFAD6600BABA2F /* CoreFoundation.framework in Frameworks */,
+				7E0B20CB27BFAD6600BABA2F /* libglfw.3.3.dylib in Frameworks */,
+				7E0B20CC27BFAD6600BABA2F /* OpenGL.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E0B20D627BFAD7000BABA2F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E0B20D727BFAD7000BABA2F /* CoreFoundation.framework in Frameworks */,
+				7E0B20D827BFAD7000BABA2F /* libglfw.3.3.dylib in Frameworks */,
+				7E0B20D927BFAD7000BABA2F /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,6 +222,8 @@
 				7EAD3F2727BDEC540039E0D8 /* 2.HelloTriangle-ShaderClass */,
 				7EAD3F3927BE1F060039E0D8 /* 3.Texture */,
 				7E0B20C027BFA44400BABA2F /* 3.Texture.exercise2.four-faces */,
+				7E0B20D127BFAD6600BABA2F /* 3.Texture.exercise3.zoom-in-texture */,
+				7E0B20DE27BFAD7000BABA2F /* 3.Texture.exercise4.control-texture-mix */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -210,6 +268,12 @@
 			isa = PBXGroup;
 			children = (
 				7E0B20B227BF469A00BABA2F /* 3.3.shader.fs */,
+				7E0B20E127BFAE6500BABA2F /* 3.3.exercise3.shader.fs */,
+				7E0B20DF27BFAE6400BABA2F /* 3.3.exercise3.shader.vs */,
+				7E0B20E027BFAE6500BABA2F /* 3.3.exercise4.shader.fs */,
+				7E0B20E727BFBD4B00BABA2F /* 3.Texture.exercise3.zoom-in-texture.cpp */,
+				7E0B20E827BFBD4B00BABA2F /* 3.Texture.exercise4.control-texture-mix.cpp */,
+				7E0B20E227BFAE6500BABA2F /* 3.3.exercise4.shader.vs */,
 				7E0B20C127BFA4DD00BABA2F /* 3.Texture.exercise2.four-faces.cpp */,
 				7E0B20C327BFA80500BABA2F /* 3.3.exercise2.shader.fs */,
 				7E0B20C427BFA80500BABA2F /* 3.3.exercise2.shader.vs */,
@@ -237,6 +301,40 @@
 			name = "3.Texture.exercise2.four-faces";
 			productName = HelloTriangle;
 			productReference = 7E0B20C027BFA44400BABA2F /* 3.Texture.exercise2.four-faces */;
+			productType = "com.apple.product-type.tool";
+		};
+		7E0B20C527BFAD6600BABA2F /* 3.Texture.exercise3.zoom-in-texture */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7E0B20CE27BFAD6600BABA2F /* Build configuration list for PBXNativeTarget "3.Texture.exercise3.zoom-in-texture" */;
+			buildPhases = (
+				7E0B20C627BFAD6600BABA2F /* Sources */,
+				7E0B20C927BFAD6600BABA2F /* Frameworks */,
+				7E0B20CD27BFAD6600BABA2F /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "3.Texture.exercise3.zoom-in-texture";
+			productName = HelloTriangle;
+			productReference = 7E0B20D127BFAD6600BABA2F /* 3.Texture.exercise3.zoom-in-texture */;
+			productType = "com.apple.product-type.tool";
+		};
+		7E0B20D227BFAD7000BABA2F /* 3.Texture.exercise4.control-texture-mix */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7E0B20DB27BFAD7000BABA2F /* Build configuration list for PBXNativeTarget "3.Texture.exercise4.control-texture-mix" */;
+			buildPhases = (
+				7E0B20D327BFAD7000BABA2F /* Sources */,
+				7E0B20D627BFAD7000BABA2F /* Frameworks */,
+				7E0B20DA27BFAD7000BABA2F /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "3.Texture.exercise4.control-texture-mix";
+			productName = HelloTriangle;
+			productReference = 7E0B20DE27BFAD7000BABA2F /* 3.Texture.exercise4.control-texture-mix */;
 			productType = "com.apple.product-type.tool";
 		};
 		7EAD3EF227BC1C7F0039E0D8 /* 2.HelloTriangle */ = {
@@ -321,6 +419,8 @@
 				7EAD3F1B27BDEC540039E0D8 /* 2.HelloTriangle-ShaderClass */,
 				7EAD3F2D27BE1F060039E0D8 /* 3.Texture */,
 				7E0B20B427BFA44400BABA2F /* 3.Texture.exercise2.four-faces */,
+				7E0B20C527BFAD6600BABA2F /* 3.Texture.exercise3.zoom-in-texture */,
+				7E0B20D227BFAD7000BABA2F /* 3.Texture.exercise4.control-texture-mix */,
 			);
 		};
 /* End PBXProject section */
@@ -332,6 +432,24 @@
 			files = (
 				7E0B20C227BFA4DD00BABA2F /* 3.Texture.exercise2.four-faces.cpp in Sources */,
 				7E0B20B627BFA44400BABA2F /* glad.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E0B20C627BFAD6600BABA2F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E0B20E927BFBD5400BABA2F /* 3.Texture.exercise3.zoom-in-texture.cpp in Sources */,
+				7E0B20C827BFAD6600BABA2F /* glad.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E0B20D327BFAD7000BABA2F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E0B20EA27BFBD5F00BABA2F /* 3.Texture.exercise4.control-texture-mix.cpp in Sources */,
+				7E0B20D527BFAD7000BABA2F /* glad.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,6 +494,46 @@
 			name = Debug;
 		};
 		7E0B20BF27BFA44400BABA2F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = "${inherited}";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		7E0B20CF27BFAD6600BABA2F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = "${inherited}";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		7E0B20D027BFAD6600BABA2F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = "${inherited}";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		7E0B20DC27BFAD7000BABA2F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = "${inherited}";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		7E0B20DD27BFAD7000BABA2F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -578,6 +736,24 @@
 			buildConfigurations = (
 				7E0B20BE27BFA44400BABA2F /* Debug */,
 				7E0B20BF27BFA44400BABA2F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7E0B20CE27BFAD6600BABA2F /* Build configuration list for PBXNativeTarget "3.Texture.exercise3.zoom-in-texture" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E0B20CF27BFAD6600BABA2F /* Debug */,
+				7E0B20D027BFAD6600BABA2F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7E0B20DB27BFAD7000BABA2F /* Build configuration list for PBXNativeTarget "3.Texture.exercise4.control-texture-mix" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E0B20DC27BFAD7000BABA2F /* Debug */,
+				7E0B20DD27BFAD7000BABA2F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
