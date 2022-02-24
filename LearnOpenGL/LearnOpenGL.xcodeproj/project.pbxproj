@@ -37,6 +37,11 @@
 		7E48063227C367F0000D66E0 /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0227BC1DBD0039E0D8 /* libglfw.3.3.dylib */; };
 		7E48063327C367F0000D66E0 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0027BC1CD30039E0D8 /* OpenGL.framework */; };
 		7E48063927C36817000D66E0 /* 4.Transform.exercise2.第二个缩放箱子.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E48062927C367E7000D66E0 /* 4.Transform.exercise2.第二个缩放箱子.cpp */; };
+		7E48063E27C73B00000D66E0 /* glad.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD3F1627BDE60D0039E0D8 /* glad.c */; };
+		7E48064027C73B00000D66E0 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3EFE27BC1CA60039E0D8 /* CoreFoundation.framework */; platformFilter = maccatalyst; };
+		7E48064127C73B00000D66E0 /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0227BC1DBD0039E0D8 /* libglfw.3.3.dylib */; };
+		7E48064227C73B00000D66E0 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0027BC1CD30039E0D8 /* OpenGL.framework */; };
+		7E48064827C73B12000D66E0 /* 4.Coordinates_2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E48063A27C73AF4000D66E0 /* 4.Coordinates_2D.cpp */; };
 		7EAD3EF727BC1C7F0039E0D8 /* 2.HelloTriangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD3EF627BC1C7F0039E0D8 /* 2.HelloTriangle.cpp */; };
 		7EAD3EFF27BC1CA60039E0D8 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3EFE27BC1CA60039E0D8 /* CoreFoundation.framework */; platformFilter = maccatalyst; };
 		7EAD3F0327BC1DBD0039E0D8 /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0227BC1DBD0039E0D8 /* libglfw.3.3.dylib */; };
@@ -109,6 +114,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		7E48064327C73B00000D66E0 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		7EAD3EF127BC1C7F0039E0D8 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -163,6 +177,10 @@
 		7E48062727C36492000D66E0 /* 4.Transform.exercise1.先平移后旋转.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "4.Transform.exercise1.先平移后旋转.cpp"; sourceTree = "<group>"; };
 		7E48062927C367E7000D66E0 /* 4.Transform.exercise2.第二个缩放箱子.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "4.Transform.exercise2.第二个缩放箱子.cpp"; sourceTree = "<group>"; };
 		7E48063827C367F0000D66E0 /* 4.Transform.exercise2.第二个缩放箱子 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "4.Transform.exercise2.第二个缩放箱子"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E48063A27C73AF4000D66E0 /* 4.Coordinates_2D.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = 4.Coordinates_2D.cpp; sourceTree = "<group>"; };
+		7E48064727C73B00000D66E0 /* 4.Coordinates */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = 4.Coordinates; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E48064927C73B5B000D66E0 /* 4.Coordinates_2D-3.3.shader.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = "4.Coordinates_2D-3.3.shader.fs"; sourceTree = "<group>"; };
+		7E48064A27C73B5B000D66E0 /* 4.Coordinates_2D-3.3.shader.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = "4.Coordinates_2D-3.3.shader.vs"; sourceTree = "<group>"; };
 		7EAD3EF327BC1C7F0039E0D8 /* 2.HelloTriangle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = 2.HelloTriangle; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EAD3EF627BC1C7F0039E0D8 /* 2.HelloTriangle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = 2.HelloTriangle.cpp; sourceTree = "<group>"; };
 		7EAD3EFE27BC1CA60039E0D8 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -239,6 +257,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7E48063F27C73B00000D66E0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E48064027C73B00000D66E0 /* CoreFoundation.framework in Frameworks */,
+				7E48064127C73B00000D66E0 /* libglfw.3.3.dylib in Frameworks */,
+				7E48064227C73B00000D66E0 /* OpenGL.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7EAD3EF027BC1C7F0039E0D8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -286,7 +314,10 @@
 			children = (
 				7E48061627C1C7BA000D66E0 /* 4.Transform.cpp */,
 				7E48062727C36492000D66E0 /* 4.Transform.exercise1.先平移后旋转.cpp */,
+				7E48063A27C73AF4000D66E0 /* 4.Coordinates_2D.cpp */,
 				7E48062927C367E7000D66E0 /* 4.Transform.exercise2.第二个缩放箱子.cpp */,
+				7E48064927C73B5B000D66E0 /* 4.Coordinates_2D-3.3.shader.fs */,
+				7E48064A27C73B5B000D66E0 /* 4.Coordinates_2D-3.3.shader.vs */,
 				7E48061827C1C834000D66E0 /* 4.Transform-3.3.shader.fs */,
 				7E48061927C1C834000D66E0 /* 4.Transform-3.3.shader.vs */,
 			);
@@ -320,6 +351,7 @@
 				7E0B20F727BFF7D000BABA2F /* 4.Transform */,
 				7E48062627C3647D000D66E0 /* 4.Transform.exercise1.先平移后旋转 */,
 				7E48063827C367F0000D66E0 /* 4.Transform.exercise2.第二个缩放箱子 */,
+				7E48064727C73B00000D66E0 /* 4.Coordinates */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -484,6 +516,23 @@
 			productReference = 7E48063827C367F0000D66E0 /* 4.Transform.exercise2.第二个缩放箱子 */;
 			productType = "com.apple.product-type.tool";
 		};
+		7E48063B27C73B00000D66E0 /* 4.Coordinates */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7E48064427C73B00000D66E0 /* Build configuration list for PBXNativeTarget "4.Coordinates" */;
+			buildPhases = (
+				7E48063C27C73B00000D66E0 /* Sources */,
+				7E48063F27C73B00000D66E0 /* Frameworks */,
+				7E48064327C73B00000D66E0 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = 4.Coordinates;
+			productName = HelloTriangle;
+			productReference = 7E48064727C73B00000D66E0 /* 4.Coordinates */;
+			productType = "com.apple.product-type.tool";
+		};
 		7EAD3EF227BC1C7F0039E0D8 /* 2.HelloTriangle */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7EAD3EFA27BC1C7F0039E0D8 /* Build configuration list for PBXNativeTarget "2.HelloTriangle" */;
@@ -571,6 +620,7 @@
 				7E0B20EB27BFF7D000BABA2F /* 4.Transform */,
 				7E48061A27C3647D000D66E0 /* 4.Transform.exercise1.先平移后旋转 */,
 				7E48062B27C367F0000D66E0 /* 4.Transform.exercise2.第二个缩放箱子 */,
+				7E48063B27C73B00000D66E0 /* 4.Coordinates */,
 			);
 		};
 /* End PBXProject section */
@@ -627,6 +677,15 @@
 			files = (
 				7E48063927C36817000D66E0 /* 4.Transform.exercise2.第二个缩放箱子.cpp in Sources */,
 				7E48062F27C367F0000D66E0 /* glad.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E48063C27C73B00000D66E0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E48064827C73B12000D66E0 /* 4.Coordinates_2D.cpp in Sources */,
+				7E48063E27C73B00000D66E0 /* glad.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -771,6 +830,26 @@
 			name = Debug;
 		};
 		7E48063727C367F0000D66E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = "${inherited}";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		7E48064527C73B00000D66E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = "${inherited}";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		7E48064627C73B00000D66E0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -1020,6 +1099,15 @@
 			buildConfigurations = (
 				7E48063627C367F0000D66E0 /* Debug */,
 				7E48063727C367F0000D66E0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7E48064427C73B00000D66E0 /* Build configuration list for PBXNativeTarget "4.Coordinates" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E48064527C73B00000D66E0 /* Debug */,
+				7E48064627C73B00000D66E0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
