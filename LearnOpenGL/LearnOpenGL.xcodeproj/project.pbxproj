@@ -62,6 +62,11 @@
 		7EAD3F3327BE1F060039E0D8 /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0227BC1DBD0039E0D8 /* libglfw.3.3.dylib */; };
 		7EAD3F3427BE1F060039E0D8 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0027BC1CD30039E0D8 /* OpenGL.framework */; };
 		7EAD3F3A27BEA2A70039E0D8 /* 3.Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD3F2C27BE1EFD0039E0D8 /* 3.Texture.cpp */; };
+		7EF32EBB27D1D0F300B10078 /* glad.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD3F1627BDE60D0039E0D8 /* glad.c */; };
+		7EF32EBD27D1D0F300B10078 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3EFE27BC1CA60039E0D8 /* CoreFoundation.framework */; platformFilter = maccatalyst; };
+		7EF32EBE27D1D0F300B10078 /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0227BC1DBD0039E0D8 /* libglfw.3.3.dylib */; };
+		7EF32EBF27D1D0F300B10078 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0027BC1CD30039E0D8 /* OpenGL.framework */; };
+		7EF32EC627D1D13100B10078 /* 4.Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EC527D1D13000B10078 /* 4.Camera.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -164,6 +169,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		7EF32EC027D1D0F300B10078 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -212,6 +226,12 @@
 		7EAD3F2A27BDEF440039E0D8 /* 3.3.shader.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 3.3.shader.vs; sourceTree = "<group>"; };
 		7EAD3F2C27BE1EFD0039E0D8 /* 3.Texture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = 3.Texture.cpp; sourceTree = "<group>"; };
 		7EAD3F3927BE1F060039E0D8 /* 3.Texture */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = 3.Texture; sourceTree = BUILT_PRODUCTS_DIR; };
+		7EF32EC427D1D0F300B10078 /* 4.Camera */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = 4.Camera; sourceTree = BUILT_PRODUCTS_DIR; };
+		7EF32EC527D1D13000B10078 /* 4.Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = 4.Camera.cpp; sourceTree = "<group>"; };
+		7EF32EC727D1D13F00B10078 /* 4.Camera-3.3.shader.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = "4.Camera-3.3.shader.fs"; sourceTree = "<group>"; };
+		7EF32EC827D1D13F00B10078 /* 4.Camera-3.3.shader.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = "4.Camera-3.3.shader.vs"; sourceTree = "<group>"; };
+		7EF32EC927D1D3A500B10078 /* awesomeface.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = awesomeface.png; sourceTree = "<group>"; };
+		7EF32ECA27D1F5C300B10078 /* Camera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -325,6 +345,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7EF32EBC27D1D0F300B10078 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7EF32EBD27D1D0F300B10078 /* CoreFoundation.framework in Frameworks */,
+				7EF32EBE27D1D0F300B10078 /* libglfw.3.3.dylib in Frameworks */,
+				7EF32EBF27D1D0F300B10078 /* OpenGL.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -333,6 +363,7 @@
 			children = (
 				7E0B20AE27BF419F00BABA2F /* container.jpg */,
 				7E0B20AF27BF419F00BABA2F /* wall.jpg */,
+				7EF32EC927D1D3A500B10078 /* awesomeface.png */,
 			);
 			path = assets;
 			sourceTree = "<group>";
@@ -347,10 +378,14 @@
 				7E36EF0C27C754C9005B1804 /* 4.Coordinates_3D-3.3.shader.fs */,
 				7E36EF0D27C754CF005B1804 /* 4.Coordinates_3D.cpp */,
 				7E36EF0B27C754C8005B1804 /* 4.Coordinates_3D-3.3.shader.vs */,
+				7EF32EC727D1D13F00B10078 /* 4.Camera-3.3.shader.fs */,
+				7EF32EC827D1D13F00B10078 /* 4.Camera-3.3.shader.vs */,
+				7EF32EC527D1D13000B10078 /* 4.Camera.cpp */,
 				7E48064927C73B5B000D66E0 /* 4.Coordinates_2D-3.3.shader.fs */,
 				7E48064A27C73B5B000D66E0 /* 4.Coordinates_2D-3.3.shader.vs */,
 				7E48061827C1C834000D66E0 /* 4.Transform-3.3.shader.fs */,
 				7E48061927C1C834000D66E0 /* 4.Transform-3.3.shader.vs */,
+				7EF32ECA27D1F5C300B10078 /* Camera.h */,
 			);
 			path = 4.Transform;
 			sourceTree = "<group>";
@@ -384,6 +419,7 @@
 				7E48063827C367F0000D66E0 /* 4.Transform.exercise2.第二个缩放箱子 */,
 				7E48064727C73B00000D66E0 /* 4.Coordinates_2D */,
 				7E36EF1A27C754D9005B1804 /* 4.Coordinates_3D */,
+				7EF32EC427D1D0F300B10078 /* 4.Camera */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -633,6 +669,23 @@
 			productReference = 7EAD3F3927BE1F060039E0D8 /* 3.Texture */;
 			productType = "com.apple.product-type.tool";
 		};
+		7EF32EB827D1D0F300B10078 /* 4.Camera */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7EF32EC127D1D0F300B10078 /* Build configuration list for PBXNativeTarget "4.Camera" */;
+			buildPhases = (
+				7EF32EB927D1D0F300B10078 /* Sources */,
+				7EF32EBC27D1D0F300B10078 /* Frameworks */,
+				7EF32EC027D1D0F300B10078 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = 4.Camera;
+			productName = HelloTriangle;
+			productReference = 7EF32EC427D1D0F300B10078 /* 4.Camera */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -671,6 +724,7 @@
 				7E48062B27C367F0000D66E0 /* 4.Transform.exercise2.第二个缩放箱子 */,
 				7E48063B27C73B00000D66E0 /* 4.Coordinates_2D */,
 				7E36EF0E27C754D9005B1804 /* 4.Coordinates_3D */,
+				7EF32EB827D1D0F300B10078 /* 4.Camera */,
 			);
 		};
 /* End PBXProject section */
@@ -772,6 +826,15 @@
 			files = (
 				7EAD3F3027BE1F060039E0D8 /* glad.c in Sources */,
 				7EAD3F3A27BEA2A70039E0D8 /* 3.Texture.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7EF32EB927D1D0F300B10078 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7EF32EC627D1D13100B10078 /* 4.Camera.cpp in Sources */,
+				7EF32EBB27D1D0F300B10078 /* glad.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1125,6 +1188,26 @@
 			};
 			name = Release;
 		};
+		7EF32EC227D1D0F300B10078 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = "${inherited}";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		7EF32EC327D1D0F300B10078 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = "${inherited}";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1232,6 +1315,15 @@
 			buildConfigurations = (
 				7EAD3F3727BE1F060039E0D8 /* Debug */,
 				7EAD3F3827BE1F060039E0D8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7EF32EC127D1D0F300B10078 /* Build configuration list for PBXNativeTarget "4.Camera" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7EF32EC227D1D0F300B10078 /* Debug */,
+				7EF32EC327D1D0F300B10078 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
