@@ -67,6 +67,18 @@
 		7EF32EBE27D1D0F300B10078 /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0227BC1DBD0039E0D8 /* libglfw.3.3.dylib */; };
 		7EF32EBF27D1D0F300B10078 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0027BC1CD30039E0D8 /* OpenGL.framework */; };
 		7EF32EC627D1D13100B10078 /* 4.Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EC527D1D13000B10078 /* 4.Camera.cpp */; };
+		7EF32ED127D35CB000B10078 /* glad.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD3F1627BDE60D0039E0D8 /* glad.c */; };
+		7EF32ED327D35CB000B10078 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3EFE27BC1CA60039E0D8 /* CoreFoundation.framework */; platformFilter = maccatalyst; };
+		7EF32ED427D35CB000B10078 /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0227BC1DBD0039E0D8 /* libglfw.3.3.dylib */; };
+		7EF32ED527D35CB000B10078 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0027BC1CD30039E0D8 /* OpenGL.framework */; };
+		7EF32EDF27D35FCC00B10078 /* 5.Light.Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32ECC27D35C8100B10078 /* 5.Light.Color.cpp */; };
+		7EF32EEC27D4E6F500B10078 /* imgui_impl_glfw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EE927D4E6CF00B10078 /* imgui_impl_glfw.cpp */; };
+		7EF32EED27D4E6F500B10078 /* imgui_impl_opengl3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EEB27D4E6CF00B10078 /* imgui_impl_opengl3.cpp */; };
+		7EF32EF927D4E8FA00B10078 /* imgui_draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EF327D4E8E600B10078 /* imgui_draw.cpp */; };
+		7EF32EFA27D4E8FA00B10078 /* imgui_tables.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EF427D4E8E600B10078 /* imgui_tables.cpp */; };
+		7EF32EFB27D4E8FB00B10078 /* imgui_widgets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EF227D4E8E600B10078 /* imgui_widgets.cpp */; };
+		7EF32EFC27D4E8FB00B10078 /* imgui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EEE27D4E7CA00B10078 /* imgui.cpp */; };
+		7EF32EFE27D4EAA200B10078 /* imgui_demo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EFD27D4EAA200B10078 /* imgui_demo.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -178,6 +190,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		7EF32ED627D35CB000B10078 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -232,6 +253,30 @@
 		7EF32EC827D1D13F00B10078 /* 4.Camera-3.3.shader.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = "4.Camera-3.3.shader.vs"; sourceTree = "<group>"; };
 		7EF32EC927D1D3A500B10078 /* awesomeface.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = awesomeface.png; sourceTree = "<group>"; };
 		7EF32ECA27D1F5C300B10078 /* Camera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
+		7EF32ECC27D35C8100B10078 /* 5.Light.Color.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = 5.Light.Color.cpp; sourceTree = "<group>"; };
+		7EF32EDA27D35CB000B10078 /* 5.Light.Color */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = 5.Light.Color; sourceTree = BUILT_PRODUCTS_DIR; };
+		7EF32EDB27D35D1700B10078 /* shader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shader.h; sourceTree = "<group>"; };
+		7EF32EDE27D35D1800B10078 /* camera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = camera.h; sourceTree = "<group>"; };
+		7EF32EE027D366DA00B10078 /* 5.Light.Color.light_cube.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 5.Light.Color.light_cube.vs; sourceTree = "<group>"; };
+		7EF32EE127D366DA00B10078 /* 5.Light.Color.light_cube.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 5.Light.Color.light_cube.fs; sourceTree = "<group>"; };
+		7EF32EE227D366DA00B10078 /* 5.Light.Color.colors.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 5.Light.Color.colors.vs; sourceTree = "<group>"; };
+		7EF32EE427D366DA00B10078 /* 5.Light.Color.colors.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 5.Light.Color.colors.fs; sourceTree = "<group>"; };
+		7EF32EE627D4E54F00B10078 /* imgui.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = imgui.h; sourceTree = "<group>"; };
+		7EF32EE727D4E6C000B10078 /* imgui_impl_opengl3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = imgui_impl_opengl3.h; sourceTree = "<group>"; };
+		7EF32EE827D4E6C000B10078 /* imgui_impl_glfw.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = imgui_impl_glfw.h; sourceTree = "<group>"; };
+		7EF32EE927D4E6CF00B10078 /* imgui_impl_glfw.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_impl_glfw.cpp; sourceTree = "<group>"; };
+		7EF32EEA27D4E6CF00B10078 /* imgui_impl_opengl3_loader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = imgui_impl_opengl3_loader.h; sourceTree = "<group>"; };
+		7EF32EEB27D4E6CF00B10078 /* imgui_impl_opengl3.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_impl_opengl3.cpp; sourceTree = "<group>"; };
+		7EF32EEE27D4E7CA00B10078 /* imgui.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = imgui.cpp; sourceTree = "<group>"; };
+		7EF32EEF27D4E7EC00B10078 /* imconfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = imconfig.h; sourceTree = "<group>"; };
+		7EF32EF027D4E8E500B10078 /* imstb_truetype.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = imstb_truetype.h; sourceTree = "<group>"; };
+		7EF32EF127D4E8E500B10078 /* imgui_internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = imgui_internal.h; sourceTree = "<group>"; };
+		7EF32EF227D4E8E600B10078 /* imgui_widgets.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_widgets.cpp; sourceTree = "<group>"; };
+		7EF32EF327D4E8E600B10078 /* imgui_draw.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_draw.cpp; sourceTree = "<group>"; };
+		7EF32EF427D4E8E600B10078 /* imgui_tables.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_tables.cpp; sourceTree = "<group>"; };
+		7EF32EF627D4E8E600B10078 /* imstb_textedit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = imstb_textedit.h; sourceTree = "<group>"; };
+		7EF32EF727D4E8E700B10078 /* imstb_rectpack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = imstb_rectpack.h; sourceTree = "<group>"; };
+		7EF32EFD27D4EAA200B10078 /* imgui_demo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = imgui_demo.cpp; path = ../../../GitHub/imgui/imgui_demo.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -355,6 +400,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7EF32ED227D35CB000B10078 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7EF32ED327D35CB000B10078 /* CoreFoundation.framework in Frameworks */,
+				7EF32ED427D35CB000B10078 /* libglfw.3.3.dylib in Frameworks */,
+				7EF32ED527D35CB000B10078 /* OpenGL.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -393,6 +448,9 @@
 		7EAD3EEA27BC1C7F0039E0D8 = {
 			isa = PBXGroup;
 			children = (
+				7EF32EE527D4E53700B10078 /* imgui */,
+				7EF32ECD27D35C8700B10078 /* learnopengl */,
+				7EF32ECB27D358B000B10078 /* 5.Light */,
 				7E48061527C1C79B000D66E0 /* 4.Transform */,
 				7E0B20AD27BF419F00BABA2F /* assets */,
 				7EAD3F1627BDE60D0039E0D8 /* glad.c */,
@@ -420,6 +478,7 @@
 				7E48064727C73B00000D66E0 /* 4.Coordinates_2D */,
 				7E36EF1A27C754D9005B1804 /* 4.Coordinates_3D */,
 				7EF32EC427D1D0F300B10078 /* 4.Camera */,
+				7EF32EDA27D35CB000B10078 /* 5.Light.Color */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -477,6 +536,50 @@
 				7EAD3F2C27BE1EFD0039E0D8 /* 3.Texture.cpp */,
 			);
 			path = 3.Texture;
+			sourceTree = "<group>";
+		};
+		7EF32ECB27D358B000B10078 /* 5.Light */ = {
+			isa = PBXGroup;
+			children = (
+				7EF32ECC27D35C8100B10078 /* 5.Light.Color.cpp */,
+				7EF32EE427D366DA00B10078 /* 5.Light.Color.colors.fs */,
+				7EF32EE227D366DA00B10078 /* 5.Light.Color.colors.vs */,
+				7EF32EE127D366DA00B10078 /* 5.Light.Color.light_cube.fs */,
+				7EF32EE027D366DA00B10078 /* 5.Light.Color.light_cube.vs */,
+			);
+			path = 5.Light;
+			sourceTree = "<group>";
+		};
+		7EF32ECD27D35C8700B10078 /* learnopengl */ = {
+			isa = PBXGroup;
+			children = (
+				7EF32EDE27D35D1800B10078 /* camera.h */,
+				7EF32EDB27D35D1700B10078 /* shader.h */,
+			);
+			path = learnopengl;
+			sourceTree = "<group>";
+		};
+		7EF32EE527D4E53700B10078 /* imgui */ = {
+			isa = PBXGroup;
+			children = (
+				7EF32EFD27D4EAA200B10078 /* imgui_demo.cpp */,
+				7EF32EE827D4E6C000B10078 /* imgui_impl_glfw.h */,
+				7EF32EE927D4E6CF00B10078 /* imgui_impl_glfw.cpp */,
+				7EF32EEA27D4E6CF00B10078 /* imgui_impl_opengl3_loader.h */,
+				7EF32EEF27D4E7EC00B10078 /* imconfig.h */,
+				7EF32EF327D4E8E600B10078 /* imgui_draw.cpp */,
+				7EF32EF127D4E8E500B10078 /* imgui_internal.h */,
+				7EF32EF427D4E8E600B10078 /* imgui_tables.cpp */,
+				7EF32EF227D4E8E600B10078 /* imgui_widgets.cpp */,
+				7EF32EF727D4E8E700B10078 /* imstb_rectpack.h */,
+				7EF32EF627D4E8E600B10078 /* imstb_textedit.h */,
+				7EF32EF027D4E8E500B10078 /* imstb_truetype.h */,
+				7EF32EEB27D4E6CF00B10078 /* imgui_impl_opengl3.cpp */,
+				7EF32EEE27D4E7CA00B10078 /* imgui.cpp */,
+				7EF32EE727D4E6C000B10078 /* imgui_impl_opengl3.h */,
+				7EF32EE627D4E54F00B10078 /* imgui.h */,
+			);
+			path = imgui;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -686,6 +789,23 @@
 			productReference = 7EF32EC427D1D0F300B10078 /* 4.Camera */;
 			productType = "com.apple.product-type.tool";
 		};
+		7EF32ECE27D35CB000B10078 /* 5.Light.Color */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7EF32ED727D35CB000B10078 /* Build configuration list for PBXNativeTarget "5.Light.Color" */;
+			buildPhases = (
+				7EF32ECF27D35CB000B10078 /* Sources */,
+				7EF32ED227D35CB000B10078 /* Frameworks */,
+				7EF32ED627D35CB000B10078 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = 5.Light.Color;
+			productName = HelloTriangle;
+			productReference = 7EF32EDA27D35CB000B10078 /* 5.Light.Color */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -725,6 +845,7 @@
 				7E48063B27C73B00000D66E0 /* 4.Coordinates_2D */,
 				7E36EF0E27C754D9005B1804 /* 4.Coordinates_3D */,
 				7EF32EB827D1D0F300B10078 /* 4.Camera */,
+				7EF32ECE27D35CB000B10078 /* 5.Light.Color */,
 			);
 		};
 /* End PBXProject section */
@@ -835,6 +956,22 @@
 			files = (
 				7EF32EC627D1D13100B10078 /* 4.Camera.cpp in Sources */,
 				7EF32EBB27D1D0F300B10078 /* glad.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7EF32ECF27D35CB000B10078 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7EF32EF927D4E8FA00B10078 /* imgui_draw.cpp in Sources */,
+				7EF32EFA27D4E8FA00B10078 /* imgui_tables.cpp in Sources */,
+				7EF32EFB27D4E8FB00B10078 /* imgui_widgets.cpp in Sources */,
+				7EF32EFC27D4E8FB00B10078 /* imgui.cpp in Sources */,
+				7EF32EEC27D4E6F500B10078 /* imgui_impl_glfw.cpp in Sources */,
+				7EF32EED27D4E6F500B10078 /* imgui_impl_opengl3.cpp in Sources */,
+				7EF32EDF27D35FCC00B10078 /* 5.Light.Color.cpp in Sources */,
+				7EF32EFE27D4EAA200B10078 /* imgui_demo.cpp in Sources */,
+				7EF32ED127D35CB000B10078 /* glad.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1054,10 +1191,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include/,
-					/Users/lance/code/learnopengl/vendor/glad/include,
 					/Users/lance/code/learnopengl/vendor/stb,
-					/Users/lance/code/learnopengl/LearnOpenGL/shader,
 					/Users/lance/code/learnopengl/vendor/glm/include,
+					/Users/lance/code/learnopengl/LearnOpenGL/learnopengl,
+					/Users/lance/code/learnopengl/LearnOpenGL,
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/Cellar/glfw/3.3.6/lib;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
@@ -1115,10 +1252,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include/,
-					/Users/lance/code/learnopengl/vendor/glad/include,
 					/Users/lance/code/learnopengl/vendor/stb,
-					/Users/lance/code/learnopengl/LearnOpenGL/shader,
 					/Users/lance/code/learnopengl/vendor/glm/include,
+					/Users/lance/code/learnopengl/LearnOpenGL/learnopengl,
+					/Users/lance/code/learnopengl/LearnOpenGL,
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/Cellar/glfw/3.3.6/lib;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
@@ -1199,6 +1336,26 @@
 			name = Debug;
 		};
 		7EF32EC327D1D0F300B10078 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = "${inherited}";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		7EF32ED827D35CB000B10078 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = "${inherited}";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		7EF32ED927D35CB000B10078 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -1324,6 +1481,15 @@
 			buildConfigurations = (
 				7EF32EC227D1D0F300B10078 /* Debug */,
 				7EF32EC327D1D0F300B10078 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7EF32ED727D35CB000B10078 /* Build configuration list for PBXNativeTarget "5.Light.Color" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7EF32ED827D35CB000B10078 /* Debug */,
+				7EF32ED927D35CB000B10078 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
