@@ -79,6 +79,17 @@
 		7EF32EFB27D4E8FB00B10078 /* imgui_widgets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EF227D4E8E600B10078 /* imgui_widgets.cpp */; };
 		7EF32EFC27D4E8FB00B10078 /* imgui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EEE27D4E7CA00B10078 /* imgui.cpp */; };
 		7EF32EFE27D4EAA200B10078 /* imgui_demo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EFD27D4EAA200B10078 /* imgui_demo.cpp */; };
+		7EF32F0627D5A9F200B10078 /* imgui_draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EF327D4E8E600B10078 /* imgui_draw.cpp */; };
+		7EF32F0727D5A9F200B10078 /* imgui_tables.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EF427D4E8E600B10078 /* imgui_tables.cpp */; };
+		7EF32F0827D5A9F200B10078 /* imgui_widgets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EF227D4E8E600B10078 /* imgui_widgets.cpp */; };
+		7EF32F0927D5A9F200B10078 /* imgui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EEE27D4E7CA00B10078 /* imgui.cpp */; };
+		7EF32F0A27D5A9F200B10078 /* imgui_impl_glfw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EE927D4E6CF00B10078 /* imgui_impl_glfw.cpp */; };
+		7EF32F0B27D5A9F200B10078 /* imgui_impl_opengl3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EEB27D4E6CF00B10078 /* imgui_impl_opengl3.cpp */; };
+		7EF32F0E27D5A9F200B10078 /* glad.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD3F1627BDE60D0039E0D8 /* glad.c */; };
+		7EF32F1027D5A9F200B10078 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3EFE27BC1CA60039E0D8 /* CoreFoundation.framework */; platformFilter = maccatalyst; };
+		7EF32F1127D5A9F200B10078 /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0227BC1DBD0039E0D8 /* libglfw.3.3.dylib */; };
+		7EF32F1227D5A9F200B10078 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0027BC1CD30039E0D8 /* OpenGL.framework */; };
+		7EF32F1827D5AA0900B10078 /* 5.Light.PhongLighting.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32F0127D5A9EB00B10078 /* 5.Light.PhongLighting.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -199,6 +210,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		7EF32F1327D5A9F200B10078 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -277,6 +297,12 @@
 		7EF32EF627D4E8E600B10078 /* imstb_textedit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = imstb_textedit.h; sourceTree = "<group>"; };
 		7EF32EF727D4E8E700B10078 /* imstb_rectpack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = imstb_rectpack.h; sourceTree = "<group>"; };
 		7EF32EFD27D4EAA200B10078 /* imgui_demo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = imgui_demo.cpp; path = ../../../GitHub/imgui/imgui_demo.cpp; sourceTree = "<group>"; };
+		7EF32EFF27D5A9EB00B10078 /* 5.Light.PhongLighting.light_cube.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 5.Light.PhongLighting.light_cube.vs; sourceTree = "<group>"; };
+		7EF32F0027D5A9EB00B10078 /* 5.Light.PhongLighting.colors.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 5.Light.PhongLighting.colors.fs; sourceTree = "<group>"; };
+		7EF32F0127D5A9EB00B10078 /* 5.Light.PhongLighting.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = 5.Light.PhongLighting.cpp; sourceTree = "<group>"; };
+		7EF32F0227D5A9EB00B10078 /* 5.Light.PhongLighting.light_cube.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 5.Light.PhongLighting.light_cube.fs; sourceTree = "<group>"; };
+		7EF32F0327D5A9EB00B10078 /* 5.Light.PhongLighting.colors.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 5.Light.PhongLighting.colors.vs; sourceTree = "<group>"; };
+		7EF32F1727D5A9F200B10078 /* 5.Light.Color copy */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "5.Light.Color copy"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -410,6 +436,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7EF32F0F27D5A9F200B10078 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7EF32F1027D5A9F200B10078 /* CoreFoundation.framework in Frameworks */,
+				7EF32F1127D5A9F200B10078 /* libglfw.3.3.dylib in Frameworks */,
+				7EF32F1227D5A9F200B10078 /* OpenGL.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -479,6 +515,7 @@
 				7E36EF1A27C754D9005B1804 /* 4.Coordinates_3D */,
 				7EF32EC427D1D0F300B10078 /* 4.Camera */,
 				7EF32EDA27D35CB000B10078 /* 5.Light.Color */,
+				7EF32F1727D5A9F200B10078 /* 5.Light.Color copy */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -541,6 +578,11 @@
 		7EF32ECB27D358B000B10078 /* 5.Light */ = {
 			isa = PBXGroup;
 			children = (
+				7EF32F0027D5A9EB00B10078 /* 5.Light.PhongLighting.colors.fs */,
+				7EF32F0327D5A9EB00B10078 /* 5.Light.PhongLighting.colors.vs */,
+				7EF32F0127D5A9EB00B10078 /* 5.Light.PhongLighting.cpp */,
+				7EF32F0227D5A9EB00B10078 /* 5.Light.PhongLighting.light_cube.fs */,
+				7EF32EFF27D5A9EB00B10078 /* 5.Light.PhongLighting.light_cube.vs */,
 				7EF32ECC27D35C8100B10078 /* 5.Light.Color.cpp */,
 				7EF32EE427D366DA00B10078 /* 5.Light.Color.colors.fs */,
 				7EF32EE227D366DA00B10078 /* 5.Light.Color.colors.vs */,
@@ -806,6 +848,23 @@
 			productReference = 7EF32EDA27D35CB000B10078 /* 5.Light.Color */;
 			productType = "com.apple.product-type.tool";
 		};
+		7EF32F0427D5A9F200B10078 /* 5.Light.Color copy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7EF32F1427D5A9F200B10078 /* Build configuration list for PBXNativeTarget "5.Light.Color copy" */;
+			buildPhases = (
+				7EF32F0527D5A9F200B10078 /* Sources */,
+				7EF32F0F27D5A9F200B10078 /* Frameworks */,
+				7EF32F1327D5A9F200B10078 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "5.Light.Color copy";
+			productName = HelloTriangle;
+			productReference = 7EF32F1727D5A9F200B10078 /* 5.Light.Color copy */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -846,6 +905,7 @@
 				7E36EF0E27C754D9005B1804 /* 4.Coordinates_3D */,
 				7EF32EB827D1D0F300B10078 /* 4.Camera */,
 				7EF32ECE27D35CB000B10078 /* 5.Light.Color */,
+				7EF32F0427D5A9F200B10078 /* 5.Light.Color copy */,
 			);
 		};
 /* End PBXProject section */
@@ -972,6 +1032,21 @@
 				7EF32EDF27D35FCC00B10078 /* 5.Light.Color.cpp in Sources */,
 				7EF32EFE27D4EAA200B10078 /* imgui_demo.cpp in Sources */,
 				7EF32ED127D35CB000B10078 /* glad.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7EF32F0527D5A9F200B10078 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7EF32F1827D5AA0900B10078 /* 5.Light.PhongLighting.cpp in Sources */,
+				7EF32F0627D5A9F200B10078 /* imgui_draw.cpp in Sources */,
+				7EF32F0727D5A9F200B10078 /* imgui_tables.cpp in Sources */,
+				7EF32F0827D5A9F200B10078 /* imgui_widgets.cpp in Sources */,
+				7EF32F0927D5A9F200B10078 /* imgui.cpp in Sources */,
+				7EF32F0A27D5A9F200B10078 /* imgui_impl_glfw.cpp in Sources */,
+				7EF32F0B27D5A9F200B10078 /* imgui_impl_opengl3.cpp in Sources */,
+				7EF32F0E27D5A9F200B10078 /* glad.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1365,6 +1440,26 @@
 			};
 			name = Release;
 		};
+		7EF32F1527D5A9F200B10078 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = "${inherited}";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		7EF32F1627D5A9F200B10078 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = "${inherited}";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1490,6 +1585,15 @@
 			buildConfigurations = (
 				7EF32ED827D35CB000B10078 /* Debug */,
 				7EF32ED927D35CB000B10078 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7EF32F1427D5A9F200B10078 /* Build configuration list for PBXNativeTarget "5.Light.Color copy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7EF32F1527D5A9F200B10078 /* Debug */,
+				7EF32F1627D5A9F200B10078 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
