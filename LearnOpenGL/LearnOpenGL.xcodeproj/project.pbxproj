@@ -126,6 +126,18 @@
 		7EF32F5927EACE5F00B10078 /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0227BC1DBD0039E0D8 /* libglfw.3.3.dylib */; };
 		7EF32F5A27EACE5F00B10078 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0027BC1CD30039E0D8 /* OpenGL.framework */; };
 		7EF32F6027EACE7800B10078 /* 5.FlashLight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32F4B27EACE2E00B10078 /* 5.FlashLight.cpp */; };
+		7EF32F6727EC5D2E00B10078 /* imgui_draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EF327D4E8E600B10078 /* imgui_draw.cpp */; };
+		7EF32F6827EC5D2E00B10078 /* imgui_tables.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EF427D4E8E600B10078 /* imgui_tables.cpp */; };
+		7EF32F6927EC5D2E00B10078 /* imgui_widgets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EF227D4E8E600B10078 /* imgui_widgets.cpp */; };
+		7EF32F6A27EC5D2E00B10078 /* imgui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EEE27D4E7CA00B10078 /* imgui.cpp */; };
+		7EF32F6B27EC5D2E00B10078 /* imgui_impl_glfw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EE927D4E6CF00B10078 /* imgui_impl_glfw.cpp */; };
+		7EF32F6C27EC5D2E00B10078 /* imgui_impl_opengl3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EEB27D4E6CF00B10078 /* imgui_impl_opengl3.cpp */; };
+		7EF32F6D27EC5D2E00B10078 /* imgui_demo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EFD27D4EAA200B10078 /* imgui_demo.cpp */; };
+		7EF32F6E27EC5D2E00B10078 /* glad.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD3F1627BDE60D0039E0D8 /* glad.c */; };
+		7EF32F7027EC5D2E00B10078 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3EFE27BC1CA60039E0D8 /* CoreFoundation.framework */; platformFilter = maccatalyst; };
+		7EF32F7127EC5D2E00B10078 /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0227BC1DBD0039E0D8 /* libglfw.3.3.dylib */; };
+		7EF32F7227EC5D2E00B10078 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0027BC1CD30039E0D8 /* OpenGL.framework */; };
+		7EF32F7827EC5D4700B10078 /* 5.Multi_Light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32F6327EC5D2100B10078 /* 5.Multi_Light.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -282,6 +294,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		7EF32F7327EC5D2E00B10078 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -378,6 +399,10 @@
 		7EF32F4A27EACE2E00B10078 /* 5.FLashLight.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 5.FLashLight.vs; sourceTree = "<group>"; };
 		7EF32F4B27EACE2E00B10078 /* 5.FlashLight.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = 5.FlashLight.cpp; sourceTree = "<group>"; };
 		7EF32F5F27EACE5F00B10078 /* 5.FlashLight */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = 5.FlashLight; sourceTree = BUILT_PRODUCTS_DIR; };
+		7EF32F6127EC5D2100B10078 /* 5.Multi_Light.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 5.Multi_Light.vs; sourceTree = "<group>"; };
+		7EF32F6227EC5D2100B10078 /* 5.Multi_Light.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 5.Multi_Light.fs; sourceTree = "<group>"; };
+		7EF32F6327EC5D2100B10078 /* 5.Multi_Light.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = 5.Multi_Light.cpp; sourceTree = "<group>"; };
+		7EF32F7727EC5D2E00B10078 /* 5.MultiLight */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = 5.MultiLight; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -551,6 +576,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7EF32F6F27EC5D2E00B10078 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7EF32F7027EC5D2E00B10078 /* CoreFoundation.framework in Frameworks */,
+				7EF32F7127EC5D2E00B10078 /* libglfw.3.3.dylib in Frameworks */,
+				7EF32F7227EC5D2E00B10078 /* OpenGL.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -624,6 +659,7 @@
 				7EF32F2C27D990BE00B10078 /* 5.Material */,
 				7EF32F4727E0907300B10078 /* 5.LightMap */,
 				7EF32F5F27EACE5F00B10078 /* 5.FlashLight */,
+				7EF32F7727EC5D2E00B10078 /* 5.MultiLight */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -694,6 +730,9 @@
 				7EF32F0127D5A9EB00B10078 /* 5.Light.PhongLighting.cpp */,
 				7EF32F0227D5A9EB00B10078 /* 5.Light.PhongLighting.light_cube.fs */,
 				7EF32F3227E0906C00B10078 /* 5.Material_LightingMap.cpp */,
+				7EF32F6327EC5D2100B10078 /* 5.Multi_Light.cpp */,
+				7EF32F6227EC5D2100B10078 /* 5.Multi_Light.fs */,
+				7EF32F6127EC5D2100B10078 /* 5.Multi_Light.vs */,
 				7EF32F3127E0906C00B10078 /* 5.Material_LightingMap.fs */,
 				7EF32F3327E0906C00B10078 /* 5.Material_LightingMap.vs */,
 				7EF32F2F27D9916100B10078 /* 5.Material.cpp */,
@@ -1033,6 +1072,23 @@
 			productReference = 7EF32F5F27EACE5F00B10078 /* 5.FlashLight */;
 			productType = "com.apple.product-type.tool";
 		};
+		7EF32F6427EC5D2E00B10078 /* 5.MultiLight */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7EF32F7427EC5D2E00B10078 /* Build configuration list for PBXNativeTarget "5.MultiLight" */;
+			buildPhases = (
+				7EF32F6527EC5D2E00B10078 /* Sources */,
+				7EF32F6F27EC5D2E00B10078 /* Frameworks */,
+				7EF32F7327EC5D2E00B10078 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = 5.MultiLight;
+			productName = HelloTriangle;
+			productReference = 7EF32F7727EC5D2E00B10078 /* 5.MultiLight */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1077,6 +1133,7 @@
 				7EF32F1927D990BE00B10078 /* 5.Material */,
 				7EF32F3427E0907300B10078 /* 5.LightMap */,
 				7EF32F4C27EACE5F00B10078 /* 5.FlashLight */,
+				7EF32F6427EC5D2E00B10078 /* 5.MultiLight */,
 			);
 		};
 /* End PBXProject section */
@@ -1266,6 +1323,22 @@
 				7EF32F5427EACE5F00B10078 /* imgui_impl_opengl3.cpp in Sources */,
 				7EF32F5527EACE5F00B10078 /* imgui_demo.cpp in Sources */,
 				7EF32F5627EACE5F00B10078 /* glad.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7EF32F6527EC5D2E00B10078 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7EF32F7827EC5D4700B10078 /* 5.Multi_Light.cpp in Sources */,
+				7EF32F6727EC5D2E00B10078 /* imgui_draw.cpp in Sources */,
+				7EF32F6827EC5D2E00B10078 /* imgui_tables.cpp in Sources */,
+				7EF32F6927EC5D2E00B10078 /* imgui_widgets.cpp in Sources */,
+				7EF32F6A27EC5D2E00B10078 /* imgui.cpp in Sources */,
+				7EF32F6B27EC5D2E00B10078 /* imgui_impl_glfw.cpp in Sources */,
+				7EF32F6C27EC5D2E00B10078 /* imgui_impl_opengl3.cpp in Sources */,
+				7EF32F6D27EC5D2E00B10078 /* imgui_demo.cpp in Sources */,
+				7EF32F6E27EC5D2E00B10078 /* glad.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1739,6 +1812,26 @@
 			};
 			name = Release;
 		};
+		7EF32F7527EC5D2E00B10078 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = "${inherited}";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		7EF32F7627EC5D2E00B10078 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = "${inherited}";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1900,6 +1993,15 @@
 			buildConfigurations = (
 				7EF32F5D27EACE5F00B10078 /* Debug */,
 				7EF32F5E27EACE5F00B10078 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7EF32F7427EC5D2E00B10078 /* Build configuration list for PBXNativeTarget "5.MultiLight" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7EF32F7527EC5D2E00B10078 /* Debug */,
+				7EF32F7627EC5D2E00B10078 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
