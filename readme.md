@@ -95,3 +95,54 @@ glStencilMask(0xFF); // 写入 stencil buffer 时经过的 mask
 <img src="images/stencil_test/stencil_test_overlap.jpeg" alt="z-fighting on floor" style="zoom:100%;" />
 
 为了视觉美观可以将边缘加一个高斯模糊。
+
+# Blending
+
+`glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);`的format 设为RGBA 可以读带 alpha 通道的图，但是 opengl 默认不处理 alpha 值，像之前那样渲染会得到：
+
+<img src="images/blend/blend_grass_noalpha.jpeg" alt="z-fighting on floor" style="zoom:100%;" />
+
+## Discarding Fragments
+
+一般在 fragment shader 里可以将 alpha 小的部分 discard 掉
+
+```cpp
+vec4 texColor = texture(texture1, TexCoords);
+if(texColor.a < 0.1)
+    discard;
+FragColor = texColor;
+```
+
+现在得到：
+
+<img src="images/blend/blend_grass_alpha.jpeg" alt="z-fighting on floor" style="zoom:100%;" />
+
+> bind 带 alpha 的 texture 一般不用默认的 warp mode，因为 GL_REPEAT 会使上下、左右底边插值，可以在 glBindTexture 之后将 warp mode 改成 GL_CLAMP_TO_EDGE
+> `glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE); `
+> `glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);`
+
+## blending
+
+discard 掉一些 fragment 也没有给我们渲染版透明物体的能力，可以用下面的语句开启：
+
+```
+glEnable(GL_BLEND);  
+```
+
+fragment shader 运行且各种 test 都通过之后，其输出和 framebuffer 中的颜色进行混合，可以通过 ` glBlendFunc(GLenum sfactor, GLenum dfactor)` 调整 src factor 和 dest factor，`glBlendEquation(GLenum mode)` 还可以指定 Src 和 Dst 的加减等关系
+
+## semi-transparent textures
+
+开启 blending，应用到半透明的纹理上，效果如下
+
+<img src="images/blend/blend_semi-transparent_window.jpeg" alt="z-fighting on floor" style="zoom:100%;" />
+
+仔细观察，发现透明物体之间遮挡关系不对，原来是深度测试出了问题，深度测试时并不会关心 fragment 是否透明，为了解决这个问题，我们需要更改渲染顺序
+
+1. 先渲染不透明物体
+2. 根据透明物体的深度进行排序
+3. 透明物体从远到近渲染
+
+使用 std::map 创建物体到相机距离 distance 和其对应 model 变换的映射，根据 distance 排序：
+
+<img src="images/blend/blend_semi-transparent_sorted_window.jpeg" alt="z-fighting on floor" style="zoom:100%;" />
