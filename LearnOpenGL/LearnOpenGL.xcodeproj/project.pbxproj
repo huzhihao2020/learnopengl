@@ -48,7 +48,6 @@
 		7E00608428106A87004320D6 /* imgui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EEE27D4E7CA00B10078 /* imgui.cpp */; };
 		7E00608528106A87004320D6 /* imgui_impl_glfw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EE927D4E6CF00B10078 /* imgui_impl_glfw.cpp */; };
 		7E00608628106A87004320D6 /* imgui_impl_opengl3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EEB27D4E6CF00B10078 /* imgui_impl_opengl3.cpp */; };
-		7E00608728106A87004320D6 /* stencil_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E006050280FDB1C004320D6 /* stencil_test.cpp */; };
 		7E00608828106A87004320D6 /* glad.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD3F1627BDE60D0039E0D8 /* glad.c */; };
 		7E00608A28106A87004320D6 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3EFE27BC1CA60039E0D8 /* CoreFoundation.framework */; platformFilter = maccatalyst; };
 		7E00608B28106A87004320D6 /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0227BC1DBD0039E0D8 /* libglfw.3.3.dylib */; };
@@ -80,6 +79,7 @@
 		7E0060B528106AB7004320D6 /* libassimp.5.1.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EF32F7927F1485C00B10078 /* libassimp.5.1.4.dylib */; };
 		7E0060BB28106ADD004320D6 /* blend.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E00605528106A61004320D6 /* blend.cpp */; };
 		7E0060BF2811395F004320D6 /* face_culling.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E0060BD2811394A004320D6 /* face_culling.cpp */; };
+		7E0060C328114389004320D6 /* framebuffers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E0060C128114364004320D6 /* framebuffers.cpp */; };
 		7E0B20B627BFA44400BABA2F /* glad.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD3F1627BDE60D0039E0D8 /* glad.c */; };
 		7E0B20B927BFA44400BABA2F /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3EFE27BC1CA60039E0D8 /* CoreFoundation.framework */; platformFilter = maccatalyst; };
 		7E0B20BA27BFA44400BABA2F /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0227BC1DBD0039E0D8 /* libglfw.3.3.dylib */; };
@@ -492,6 +492,9 @@
 		7E0060BC2811394A004320D6 /* face_culling.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = face_culling.vs; sourceTree = "<group>"; };
 		7E0060BD2811394A004320D6 /* face_culling.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = face_culling.cpp; sourceTree = "<group>"; };
 		7E0060BE2811394A004320D6 /* face_culling.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = face_culling.fs; sourceTree = "<group>"; };
+		7E0060C028114364004320D6 /* framebuffers.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = framebuffers.fs; sourceTree = "<group>"; };
+		7E0060C128114364004320D6 /* framebuffers.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = framebuffers.cpp; sourceTree = "<group>"; };
+		7E0060C228114365004320D6 /* framebuffers.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = framebuffers.vs; sourceTree = "<group>"; };
 		7E0B20AE27BF419F00BABA2F /* container.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = container.jpg; sourceTree = "<group>"; };
 		7E0B20AF27BF419F00BABA2F /* wall.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wall.jpg; sourceTree = "<group>"; };
 		7E0B20B227BF469A00BABA2F /* 3.3.shader.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = 3.3.shader.fs; sourceTree = "<group>"; };
@@ -509,6 +512,8 @@
 		7E0B20E727BFBD4B00BABA2F /* 3.Texture.exercise3.zoom-in-texture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "3.Texture.exercise3.zoom-in-texture.cpp"; sourceTree = "<group>"; };
 		7E0B20E827BFBD4B00BABA2F /* 3.Texture.exercise4.control-texture-mix.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "3.Texture.exercise4.control-texture-mix.cpp"; sourceTree = "<group>"; };
 		7E0B20F727BFF7D000BABA2F /* 4.Transform */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = 4.Transform; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E154CAE2811B450003FDEEA /* framebuffers_quad.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = framebuffers_quad.vs; sourceTree = "<group>"; };
+		7E154CAF2811B450003FDEEA /* framebuffers_quad.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = framebuffers_quad.fs; sourceTree = "<group>"; };
 		7E36EF0B27C754C8005B1804 /* 4.Coordinates_3D-3.3.shader.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = "4.Coordinates_3D-3.3.shader.vs"; sourceTree = "<group>"; };
 		7E36EF0C27C754C9005B1804 /* 4.Coordinates_3D-3.3.shader.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = "4.Coordinates_3D-3.3.shader.fs"; sourceTree = "<group>"; };
 		7E36EF0D27C754CF005B1804 /* 4.Coordinates_3D.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = 4.Coordinates_3D.cpp; sourceTree = "<group>"; };
@@ -1077,6 +1082,11 @@
 		7E3FBB3D280E5C4F00E4E92B /* Advanced */ = {
 			isa = PBXGroup;
 			children = (
+				7E0060C128114364004320D6 /* framebuffers.cpp */,
+				7E0060C028114364004320D6 /* framebuffers.fs */,
+				7E0060C228114365004320D6 /* framebuffers.vs */,
+				7E154CAF2811B450003FDEEA /* framebuffers_quad.fs */,
+				7E154CAE2811B450003FDEEA /* framebuffers_quad.vs */,
 				7E0060BD2811394A004320D6 /* face_culling.cpp */,
 				7E0060BE2811394A004320D6 /* face_culling.fs */,
 				7E0060BC2811394A004320D6 /* face_culling.vs */,
@@ -1853,13 +1863,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E0060C328114389004320D6 /* framebuffers.cpp in Sources */,
 				7E00608128106A87004320D6 /* imgui_draw.cpp in Sources */,
 				7E00608228106A87004320D6 /* imgui_tables.cpp in Sources */,
 				7E00608328106A87004320D6 /* imgui_widgets.cpp in Sources */,
 				7E00608428106A87004320D6 /* imgui.cpp in Sources */,
 				7E00608528106A87004320D6 /* imgui_impl_glfw.cpp in Sources */,
 				7E00608628106A87004320D6 /* imgui_impl_opengl3.cpp in Sources */,
-				7E00608728106A87004320D6 /* stencil_test.cpp in Sources */,
 				7E00608828106A87004320D6 /* glad.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

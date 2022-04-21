@@ -162,3 +162,94 @@ glFrontFace(GL_CCW); // counter-clockwise
 需要注意 OpenGL 默认 CCW winding，Direct3D 默认 CW winding。
 
 <img src="images/face_culling/face_culling.jpeg" alt="face_culling" style="zoom:100%;" />
+
+# Framebuffers
+
+## Create Framebuffers
+
+创建 & 绑定 FBO in opengl
+
+```cpp
+unsigned int fbo;
+glGenFramebuffers(1, &fbo);
+glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+```
+
+这样创建好的 Framebuffer 还不能用，要 attach 到 color, depth 或 stencil buffer 中的一种才可以。而且每个 buffer 都要有相同的 sample 数量
+
+```cpp
+glBindFramebuffer(GL_FRAMEBUFFER, 0);   // 希望render输出到屏幕需要绑定到0(默认framebuffer)
+```
+
+在上述操作中我们往 fbo 绘制的数据并没有出现在屏幕上，所以叫做 off-screen 渲染，framebuffer 对应的 attachment 实际上就是一块可以存储 framebuffer 数据的内存，可以选择两种 attachment : texture 或者 renderbuffer objects
+
+## Texture attachments
+
+将 framebuffer attach 到 texture 上，前面的过程与加载 texture 类似，只不过 data 变成了 NULL，而且尺寸与屏幕大小相同
+
+```cpp
+unsigned int texture;
+glGenTexture(1, &texture);
+glBindTexture(GL_TEXTURE_2D, texture);
+
+glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 800, 600, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
+
+glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);  
+```
+
+attach 操作 ：
+
+```cpp
+glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texture, 0);
+```
+
+参数从前到后解释，`GL_FRAMEBUFFER` 表示 target 的 framebuffer type (read/write) ，`GL_COLOR_ATTACHMENT0` 表示 attachment type  (可以一对多)，`GL_TEXTURE_2D` 表示想要 attach 的 texture 的类型，`texture`是实际的 texture 变量，`0`是 mipmap 的 level。
+
+后面还可以给这个 framebuffer attach depth 或者 stencil texture，一般会分给 depth(24bit） 和 stencil(8bit) 放到一起，使用`GL_DEPTH_STENCIL_ATTACHMENT`
+
+## Renderbuffer object attachments
+
+另一种方式是使用 rbo，使用  rbo  会把所有的 render data 直接存入 buffer中，不会把数据转换成 texture 的格式；但是不能直接从 rbo 中读值，需要通过` glReadPixels`一次取一小片区域的数据。综上 opengl 可以对其采取特殊的存储优化。正是因为 rbo 不能直接读，所以更适合存储 depth 和 stencil 数据，因为一般不需要对这两个值采样，只需要进行深度&模板测试
+
+rbo 的具体使用方法也是类似：
+
+```cpp
+// create rbo & bind to framebuffer
+unsigned int rbo;
+glGenRenderbuffers(1, &rbo);
+glBindRenderbuffer(GL_RENDERBUFFER, rbo);  
+// specify the rbo as a depth24_stencil8 rbo
+glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, 800, 600);
+glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rbo);  
+```
+
+## Rendering to a texture
+
+采用 framebuffer + rbo 的方式，往 texture 里面渲染需要下面三步：
+
+1. `glBindTexture(GL_TEXTURE_2D, framebuffer);`
+2. Bind to the default framebuffer.
+3. Draw a quad that spans the entire screen with the new framebuffer's color buffer as its texture.
+
+此时 Framebuffer 中的图像：
+
+<img src="images/framebuffer/framebuffer_offscreen.jpeg" alt="face_culling" style="zoom:70%;" />
+
+屏幕上的图像 (开启`glPolygonMode(GL_FRONT_AND_BACK, GL_LINE)`)，实际是将 framebuffer 上的图像作为texture 绘制到屏幕上的矩形 
+
+<img src="images/framebuffer/framebuffer_onscreen.jpeg" alt="face_culling" style="zoom:70%;" />
+
+## Post-processing
+
+以 framebuffer 做纹理可以对原图像在 shader 中进行一些操作，这就是后处理，比如：
+
+```cpp
+    FragColor = vec4(vec3(1.0 - texture(screen_texture, TexCoords)), 1.0);
+```
+
+只需改一行就能得到反相的输出
+
+<img src="images/framebuffer/framebuffer_post-process.jpeg" alt="face_culling" style="zoom:100%;" />
+
+或者其他滤波或者风格化的图像
