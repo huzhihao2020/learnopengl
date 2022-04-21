@@ -22,7 +22,7 @@ glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // 每帧清空一下对应�
 
 可以通过 GLSL 的 built-in 变量 gl_FragCoord 将深度可视化：
 
-<img src="images/depth_test/depth_test(linear depth).jpeg" alt="depth_test" style="zoom:100%;" />
+<img src="images/depth_test/depth_test(linear depth).jpeg" alt="depth_test(linear depth)" style="zoom:100%;" />
 
 > 涉及到z的精度问题，透视投影将z轴的变化变成了非线性的，变换后的深度正比于1/z ，所以导致近平面处depth精度很大，远处精度很小 （联想到当时games101提出的关于透视投影后，原frustum中点是更靠近近平面还是远平面的问题，答案是远平面。物理上有两种理解方式，一种是说经过“挤压”后，靠近远平面的部分密度更大，所以原来的等距点越靠近远平面就更密集；另一种简单的理解方式是看一条无限长的铁轨，远平面可以认为是无穷，中点无穷的一半，实际上也在透视的那个交点上，自然是更靠近远平面）
 
@@ -88,11 +88,11 @@ glStencilMask(0xFF); // 写入 stencil buffer 时经过的 mask
 
 下面给 Depth Test 场景中的两个箱子加上轮廓：
 
-<img src="images/stencil_test/stencil_test.jpeg" alt="z-fighting on floor" style="zoom:100%;" />
+<img src="images/stencil_test/stencil_test.jpeg" alt="stencil_test" style="zoom:100%;" />
 
 多个物体边缘重叠：
 
-<img src="images/stencil_test/stencil_test_overlap.jpeg" alt="z-fighting on floor" style="zoom:100%;" />
+<img src="images/stencil_test/stencil_test_overlap.jpeg" alt="stencil_test_overlap" style="zoom:100%;" />
 
 为了视觉美观可以将边缘加一个高斯模糊。
 
@@ -100,7 +100,7 @@ glStencilMask(0xFF); // 写入 stencil buffer 时经过的 mask
 
 `glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);`的format 设为RGBA 可以读带 alpha 通道的图，但是 opengl 默认不处理 alpha 值，像之前那样渲染会得到：
 
-<img src="images/blend/blend_grass_noalpha.jpeg" alt="z-fighting on floor" style="zoom:100%;" />
+<img src="images/blend/blend_grass_noalpha.jpeg" alt="blend_grass_noalpha" style="zoom:100%;" />
 
 ## Discarding Fragments
 
@@ -115,13 +115,13 @@ FragColor = texColor;
 
 现在得到：
 
-<img src="images/blend/blend_grass_alpha.jpeg" alt="z-fighting on floor" style="zoom:100%;" />
+<img src="images/blend/blend_grass_alpha.jpeg" alt="blend_grass_alpha.jpeg" style="zoom:100%;" />
 
 > bind 带 alpha 的 texture 一般不用默认的 warp mode，因为 GL_REPEAT 会使上下、左右底边插值，可以在 glBindTexture 之后将 warp mode 改成 GL_CLAMP_TO_EDGE
 > `glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE); `
 > `glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);`
 
-## blending
+## Blending
 
 discard 掉一些 fragment 也没有给我们渲染版透明物体的能力，可以用下面的语句开启：
 
@@ -131,11 +131,11 @@ glEnable(GL_BLEND);
 
 fragment shader 运行且各种 test 都通过之后，其输出和 framebuffer 中的颜色进行混合，可以通过 ` glBlendFunc(GLenum sfactor, GLenum dfactor)` 调整 src factor 和 dest factor，`glBlendEquation(GLenum mode)` 还可以指定 Src 和 Dst 的加减等关系
 
-## semi-transparent textures
+## Semi-transparent Textures
 
 开启 blending，应用到半透明的纹理上，效果如下
 
-<img src="images/blend/blend_semi-transparent_window.jpeg" alt="z-fighting on floor" style="zoom:100%;" />
+<img src="images/blend/blend_semi-transparent_window.jpeg" alt="blend_semi-transparent_window" style="zoom:100%;" />
 
 仔细观察，发现透明物体之间遮挡关系不对，原来是深度测试出了问题，深度测试时并不会关心 fragment 是否透明，为了解决这个问题，我们需要更改渲染顺序
 
@@ -145,4 +145,20 @@ fragment shader 运行且各种 test 都通过之后，其输出和 framebuffer 
 
 使用 std::map 创建物体到相机距离 distance 和其对应 model 变换的映射，根据 distance 排序：
 
-<img src="images/blend/blend_semi-transparent_sorted_window.jpeg" alt="z-fighting on floor" style="zoom:100%;" />
+<img src="images/blend/blend_semi-transparent_sorted_window.jpeg" alt="blend_semi-transparent_sorted_window" style="zoom:100%;" />
+
+# Face Culling
+
+## Winding Order & Face Culling
+
+ OpenGL's GL_CULL_FACE option:
+
+```
+gl_Enable(GL_CULL_FACE);
+glCullFace(GL_FRONT);  
+glFrontFace(GL_CCW); // counter-clockwise
+```
+
+需要注意 OpenGL 默认 CCW winding，Direct3D 默认 CW winding。
+
+<img src="images/face_culling/face_culling.jpeg" alt="face_culling" style="zoom:100%;" />

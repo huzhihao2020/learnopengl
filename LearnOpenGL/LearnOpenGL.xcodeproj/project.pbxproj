@@ -37,7 +37,6 @@
 		7E00607028106A7F004320D6 /* imgui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EEE27D4E7CA00B10078 /* imgui.cpp */; };
 		7E00607128106A7F004320D6 /* imgui_impl_glfw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EE927D4E6CF00B10078 /* imgui_impl_glfw.cpp */; };
 		7E00607228106A7F004320D6 /* imgui_impl_opengl3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EEB27D4E6CF00B10078 /* imgui_impl_opengl3.cpp */; };
-		7E00607328106A7F004320D6 /* stencil_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E006050280FDB1C004320D6 /* stencil_test.cpp */; };
 		7E00607428106A7F004320D6 /* glad.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD3F1627BDE60D0039E0D8 /* glad.c */; };
 		7E00607628106A7F004320D6 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3EFE27BC1CA60039E0D8 /* CoreFoundation.framework */; platformFilter = maccatalyst; };
 		7E00607728106A7F004320D6 /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0227BC1DBD0039E0D8 /* libglfw.3.3.dylib */; };
@@ -80,6 +79,7 @@
 		7E0060B428106AB7004320D6 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0027BC1CD30039E0D8 /* OpenGL.framework */; };
 		7E0060B528106AB7004320D6 /* libassimp.5.1.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EF32F7927F1485C00B10078 /* libassimp.5.1.4.dylib */; };
 		7E0060BB28106ADD004320D6 /* blend.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E00605528106A61004320D6 /* blend.cpp */; };
+		7E0060BF2811395F004320D6 /* face_culling.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E0060BD2811394A004320D6 /* face_culling.cpp */; };
 		7E0B20B627BFA44400BABA2F /* glad.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD3F1627BDE60D0039E0D8 /* glad.c */; };
 		7E0B20B927BFA44400BABA2F /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3EFE27BC1CA60039E0D8 /* CoreFoundation.framework */; platformFilter = maccatalyst; };
 		7E0B20BA27BFA44400BABA2F /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0227BC1DBD0039E0D8 /* libglfw.3.3.dylib */; };
@@ -489,6 +489,9 @@
 		7E00609228106A87004320D6 /* framebuffers */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = framebuffers; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E0060A628106A9A004320D6 /* cubemaps */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cubemaps; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E0060BA28106AB7004320D6 /* anti-aliasing */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "anti-aliasing"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E0060BC2811394A004320D6 /* face_culling.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = face_culling.vs; sourceTree = "<group>"; };
+		7E0060BD2811394A004320D6 /* face_culling.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = face_culling.cpp; sourceTree = "<group>"; };
+		7E0060BE2811394A004320D6 /* face_culling.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = face_culling.fs; sourceTree = "<group>"; };
 		7E0B20AE27BF419F00BABA2F /* container.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = container.jpg; sourceTree = "<group>"; };
 		7E0B20AF27BF419F00BABA2F /* wall.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wall.jpg; sourceTree = "<group>"; };
 		7E0B20B227BF469A00BABA2F /* 3.3.shader.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = 3.3.shader.fs; sourceTree = "<group>"; };
@@ -1074,6 +1077,9 @@
 		7E3FBB3D280E5C4F00E4E92B /* Advanced */ = {
 			isa = PBXGroup;
 			children = (
+				7E0060BD2811394A004320D6 /* face_culling.cpp */,
+				7E0060BE2811394A004320D6 /* face_culling.fs */,
+				7E0060BC2811394A004320D6 /* face_culling.vs */,
 				7E3FBB61280EDACC00E4E92B /* depth_test.fs */,
 				7E3FBB60280EDACC00E4E92B /* depth_test.vs */,
 				7E00604E280FDB1C004320D6 /* stencil_test.fs */,
@@ -1838,8 +1844,8 @@
 				7E00607028106A7F004320D6 /* imgui.cpp in Sources */,
 				7E00607128106A7F004320D6 /* imgui_impl_glfw.cpp in Sources */,
 				7E00607228106A7F004320D6 /* imgui_impl_opengl3.cpp in Sources */,
-				7E00607328106A7F004320D6 /* stencil_test.cpp in Sources */,
 				7E00607428106A7F004320D6 /* glad.c in Sources */,
+				7E0060BF2811395F004320D6 /* face_culling.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
