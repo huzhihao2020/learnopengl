@@ -253,3 +253,91 @@ glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDER
 <img src="images/framebuffer/framebuffer_post-process.jpeg" alt="face_culling" style="zoom:100%;" />
 
 或者其他滤波或者风格化的图像
+
+# Cubemaps
+
+cubemap 其实就是 6 张面纹理拼起来的一个 box，通过光线方向与 box 交点来采样
+
+```cpp
+unsigned int loadCubemap(vector<string> faces) {
+    unsigned int textureID;
+    glGenTextures(1, &textureID);
+    glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);
+    
+    for(unsigned int i=0; i<faces.size(); i++) {
+        int w, h, nrComponents;
+        unsigned char *data = stbi_load(faces[i].c_str(), &w, &h, &nrComponents, 0);
+        if (data) {
+            glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i,
+                         0, GL_RGB, w, h, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+            stbi_image_free(data);
+        }
+    }
+}
+```
+
+注意 `glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);` 参数对应`GL_TEXTURE_CUBE_MAP`，里面的六张面纹理是有顺序的，通过`GL_TEXTURE_CUBE_MAP_POSITIVE_X + i` 加载到相应的位置。
+
+因为我们希望这个 cubemap 永远包在 camera 的最外层，我们先渲染cubemap(这时不写入 depth buffer)，然后在渲染物体：
+
+```cpp
+    glDepthMask(GL_FALSE); // 不写入 depth buffer
+    skybox_shader.use();
+    // ... set view and projection matrix
+    glBindVertexArray(cubemapVAO);
+    glBindTexture(GL_TEXTURE_CUBE_MAP, cubemap_texture);
+    glDrawArrays(GL_TRIANGLES, 0, 36);
+    glDepthMask(GL_TRUE);
+	// draw rest scene
+```
+
+我们希望无论相机怎么运动，都相当于在这个 cubemap 的中心转动，所以这里`view = glm::mat4(glm::mat3(camera.GetViewMatrix()));`可以去掉 translate ，只取旋转
+
+<img src="images/cubemaps/cubemaps.jpeg" alt="face_culling" style="zoom:100%;" />
+
+## Optimization
+
+上面的过程是先渲染了cubemap，然后渲染物体再进行覆盖，这里有个性能上的优化点：如果先渲染物体，被物体挡住的cubemap部分其实可以直接通过 深度测试 discard 掉，我们可以在shader 中将 cubemap 的深度值改成最远(z=1.0)，但是由于`glclear`会将 depth buffer 初始化为 1，所以深度测试的策略需改成 `glDepthFunc(GL_LEQUAL)`（默认是`GL_LESS`）
+
+```cpp
+/* cpp */    
+	glDepthFunc(GL_LEQUAL);
+    skybox_shader.use();
+    // ... draw cubemap
+    glDepthFunc(GL_LESS);
+
+/* vertex shader */
+	TexCoords = aPos;
+    vec4 pos = projection * view * vec4(aPos, 1.0);
+    gl_Position = pos.xyww;
+
+```
+
+## Environment Mapping
+
+通过 shader 实现与 cubemap 的交互，镜面反射：
+
+```cpp
+// Reflection
+vec3 view = normalize(cameraPos - Position);
+vec3 R = reflect(-view, normalize(Normal));
+FragColor = vec4(texture(skybox, R).rgb, 1.0);
+```
+
+<img src="images/cubemaps/cubemap_environment_reflection.jpeg" alt="face_culling" style="zoom:100%;" />
+
+折射：
+
+```cpp
+// Refraction
+float ratio = 1.00 / 1.52;
+vec3 I = normalize(Position - cameraPos);
+vec3 R = refract(I, normalize(Normal), ratio);
+FragColor = vec4(texture(skybox, R).rgb, 1.0);
+```
+
+<img src="images/cubemaps/cubemap_environment_refraction.jpeg" alt="face_culling" style="zoom:100%;" />
+
+## Dynamic environment maps
+
+上面的 shader 实现只能做 cubemap 的反射，无法反射环境中其他物体，为了解决这个问题，最简单的办法是在反射处采用 framebuffer 存好6个方向的图，生成一个动态的 cubemap，然后根据这个动态的 cubemap 计算反射。带来最大的问题是每生成一个这样的动态cubemap，等于做了六次渲染，所以实际情况中应该尽可能使用 skybox，或者多用一些 hack，尽量避免直接生成这种动态cubemap。
