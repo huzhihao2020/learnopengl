@@ -341,3 +341,77 @@ FragColor = vec4(texture(skybox, R).rgb, 1.0);
 ## Dynamic environment maps
 
 上面的 shader 实现只能做 cubemap 的反射，无法反射环境中其他物体，为了解决这个问题，最简单的办法是在反射处采用 framebuffer 存好6个方向的图，生成一个动态的 cubemap，然后根据这个动态的 cubemap 计算反射。带来最大的问题是每生成一个这样的动态cubemap，等于做了六次渲染，所以实际情况中应该尽可能使用 skybox，或者多用一些 hack，尽量避免直接生成这种动态cubemap。
+
+# Advanced Data
+
+之前的学习中我们大量使用了 buffer，我们用`glBindBuffer(GL_ARRAY_BUFFER, buffer);`为`glBufferData()`指定target为`GL_ARRAY_BUFFER`，用来处理顶点数据。
+
+通过调用`glBufferData()`往buffer里面填数据`glBufferSubData()`可以往buffer中的某段注入数据，比如:
+
+```cpp
+glBindBuffer(GL_ARRAY_BUFFER, cubeVBO);
+glBufferData(GL_ARRAY_BUFFER, sizeof(cubeVertices), cubeVertices, GL_STATIC_DRAW);
+glBufferSubData(GL_ARRAY_BUFFER, 24, sizeof(data), &data); // Range: [24, 24 + sizeof(data)]
+```
+
+可以通过`glMapBuffer`取得target buffer的指针，然后 `memset`，注意用完需要 `glUnmapBuffer()`
+
+```cpp
+float data[] = {
+  0.5f, 1.0f, -0.35f
+  [...]
+};
+glBindBuffer(GL_ARRAY_BUFFER, buffer);
+// get pointer
+void *ptr = glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
+// now copy data into memory
+memcpy(ptr, data, sizeof(data));
+// make sure to tell OpenGL we're done with the pointer
+glUnmapBuffer(GL_ARRAY_BUFFER);
+```
+
+## Batching vertex attributes
+
+通过`glVertexAttribPointer()`我们可以自定义 vertex array buffer 中各 attribute 的 layout
+
+```cpp
+glEnableVertexAttribArray(0);
+glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GL_FLOAT), (void*)0);
+glEnableVertexAttribArray(1);
+glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GL_FLOAT), (void*)(3*sizeof(float)));
+glEnableVertexAttribArray(2);
+glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GL_FLOAT), (void*)(6*sizeof(float))););
+// ...
+```
+
+比如可以按 `pos, normal, texCoord` 交叉存储，简写为 1 2 3 1 2 3 1 2 3 ... 也可以做这么一件事，采用批处理 batch 成大块的 chunck，即变成 1 1 1 1 ... 2 2 2 2 ... 3 3 3 3 ...，可以通过 `glBufferSubData()`分别将pos, normal, texCoord 传进去
+
+```cpp
+float positions[] = { ... };
+float normals[] = { ... };
+float tex[] = { ... };
+// fill buffer
+glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(positions), &positions);
+glBufferSubData(GL_ARRAY_BUFFER, sizeof(positions), sizeof(normals), &normals);
+glBufferSubData(GL_ARRAY_BUFFER, sizeof(positions) + sizeof(normals), sizeof(tex), &tex);
+```
+
+还得 update  attribute 的 layout :
+
+```cpp
+glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GL_FLOAT), (void*)0;
+glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GL_FLOAT), (void*)(sizeof(pos)));
+glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 2 * sizeof(GL_FLOAT), (void*)(sizeof(pos + normal)));
+```
+
+## Copying buffers
+
+`glCopyBufferSubData()`可以在 buffer 之间进行数据的 copy 操作
+
+```cpp
+float vertexData[] = { ... };
+glBindBuffer(GL_ARRAY_BUFFER, vbo1);
+glBindBuffer(GL_COPY_WRITE_BUFFER, vbo2);
+glCopyBufferSubData(GL_ARRAY_BUFFER, GL_COPY_WRITE_BUFFER, 0, 0, 8 * sizeof(float));  
+```
+
