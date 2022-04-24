@@ -564,3 +564,96 @@ glDrawArrays(GL_TRIANGLES, 0, 36);
 
 <img src="images/advanced_glsl/advanced_glsl_ubo_example.jpeg" alt="advanced_glsl_fragcoord" style="zoom:100%;" />
 
+# Geometry Shader
+
+geometry shader 是 vertex shader 和 fragment shader 中一个可选的步骤，可以将输入的图元转化为不同的图元，甚至还可以增加顶点数量
+
+```cpp
+#version 330 core
+layout (points) in;
+layout (line_strip, max_vertices=2) out;
+
+void main() {
+    gl_Position = gl_in[0].position + vec4(0.1 ,0, 0, 0);
+    EmitVertex();
+    gl_Position = gl_in[0].position + vec4(-0.1 ,0, 0, 0);
+    EmitVertex();
+    
+    EndPrimitive();
+}
+```
+
+要应用 geometry shader，需要 compile & link 到程序：
+
+```cpp
+geometryShader = glCreateShader(GL_GEOMETRY_SHADER);
+glShaderSource(geometryShader, 1, &gShaderCode, NULL);
+glCompileShader(geometryShader);  
+[...]
+glAttachShader(program, geometryShader);
+glLinkProgram(program);  
+```
+
+我们之前copy的`shader.h`已经帮我们做好了，直接加上 geometry shader 得到：
+
+<img src="images/geometry_shader/geomotry_shader_points2lines.jpeg" alt="advanced_glsl_fragcoord" style="zoom:100%;" />
+
+很 Boring 的一张图 ，下面做点有意义的事情。
+
+我们让 geometry shader 输出一些 triangle_strip，这种形状只需 N+2 个顶点便可得到 N 个三角形，是很高效的。注意 vertex shader 的输出也要和 geometry shader 的输入对应起来。
+
+```cpp
+// vs
+    out VS_OUT {
+        vec3 color;
+    } vs_out;
+// gs
+    in VS_OUT {
+        vec3 color;
+    } gs_in[];  // geometry shader 是对一组顶点进行处理，所以输入要以数组的形式定义
+```
+
+在输入的四个点，每个点分成五个顶点，创建一个3个三角形的strip：
+
+```cpp
+// .gs
+fColor = gs_in[0].color;
+gl_Position = position + vec4(-0.2, -0.2, 0.0, 0.0);    // 1:bottom-left
+EmitVertex();
+gl_Position = position + vec4( 0.2, -0.2, 0.0, 0.0);    // 2:bottom-right
+EmitVertex();
+gl_Position = position + vec4(-0.2,  0.2, 0.0, 0.0);    // 3:top-left
+EmitVertex();
+gl_Position = position + vec4( 0.2,  0.2, 0.0, 0.0);    // 4:top-right
+EmitVertex();
+gl_Position = position + vec4( 0.0,  0.4, 0.0, 0.0);    // 5:top
+fColor = vec3(1.0, 1.0, 1.0); // top的点是白色，图元内部会进行插值
+EmitVertex();
+EndPrimitive();
+```
+
+得到的结果：
+
+<img src="images/geometry_shader/geometry_shader_houses.jpeg" alt="advanced_glsl_fragcoord" style="zoom:100%;" />
+
+## Exploding Objects
+
+通过 geometry shader 对每个三角形沿着法线做一个位移f(t)可以得到最简单的爆炸效果：
+
+<img src="images/geometry_shader/geometry_shader_explode.jpeg" alt="advanced_glsl_fragcoord" style="zoom:100%;" />
+
+## Displaying Normals
+
+再用 geometry shader 画出每个定点的法线：
+
+<img src="images/geometry_shader/geometry_shader_normal.jpeg" alt="advanced_glsl_fragcoord" style="zoom:100%;" />
+
+顺便找到一个shader中实现随机数的算法：
+
+```cpp
+// 根据uv坐标生成随机数
+float rand(vec2 co){
+  return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);
+}
+```
+
