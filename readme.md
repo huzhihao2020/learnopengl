@@ -234,11 +234,11 @@ glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDER
 
 此时 Framebuffer 中的图像：
 
-<img src="images/framebuffer/framebuffer_offscreen.jpeg" alt="face_culling" style="zoom:70%;" />
+<img src="images/framebuffer/framebuffer_offscreen.jpeg" alt="framebuffer_offscreen" style="zoom:70%;" />
 
 屏幕上的图像 (开启`glPolygonMode(GL_FRONT_AND_BACK, GL_LINE)`)，实际是将 framebuffer 上的图像作为texture 绘制到屏幕上的矩形 
 
-<img src="images/framebuffer/framebuffer_onscreen.jpeg" alt="face_culling" style="zoom:70%;" />
+<img src="images/framebuffer/framebuffer_onscreen.jpeg" alt="framebuffer_onscreen" style="zoom:70%;" />
 
 ## Post-processing
 
@@ -250,7 +250,7 @@ glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDER
 
 只需改一行就能得到反相的输出
 
-<img src="images/framebuffer/framebuffer_post-process.jpeg" alt="face_culling" style="zoom:100%;" />
+<img src="images/framebuffer/framebuffer_post-process.jpeg" alt="framebuffer_post-process" style="zoom:100%;" />
 
 或者其他滤波或者风格化的图像
 
@@ -293,7 +293,7 @@ unsigned int loadCubemap(vector<string> faces) {
 
 我们希望无论相机怎么运动，都相当于在这个 cubemap 的中心转动，所以这里`view = glm::mat4(glm::mat3(camera.GetViewMatrix()));`可以去掉 translate ，只取旋转
 
-<img src="images/cubemaps/cubemaps.jpeg" alt="face_culling" style="zoom:100%;" />
+<img src="images/cubemaps/cubemaps.jpeg" alt="cubemaps" style="zoom:100%;" />
 
 ## Optimization
 
@@ -324,7 +324,7 @@ vec3 R = reflect(-view, normalize(Normal));
 FragColor = vec4(texture(skybox, R).rgb, 1.0);
 ```
 
-<img src="images/cubemaps/cubemap_environment_reflection.jpeg" alt="face_culling" style="zoom:100%;" />
+<img src="images/cubemaps/cubemap_environment_reflection.jpeg" alt="cubemap_environment_reflection" style="zoom:100%;" />
 
 折射：
 
@@ -336,7 +336,7 @@ vec3 R = refract(I, normalize(Normal), ratio);
 FragColor = vec4(texture(skybox, R).rgb, 1.0);
 ```
 
-<img src="images/cubemaps/cubemap_environment_refraction.jpeg" alt="face_culling" style="zoom:100%;" />
+<img src="images/cubemaps/cubemap_environment_refraction.jpeg" alt="cubemap_environment_refraction" style="zoom:100%;" />
 
 ## Dynamic environment maps
 
@@ -414,4 +414,153 @@ glBindBuffer(GL_ARRAY_BUFFER, vbo1);
 glBindBuffer(GL_COPY_WRITE_BUFFER, vbo2);
 glCopyBufferSubData(GL_ARRAY_BUFFER, GL_COPY_WRITE_BUFFER, 0, 0, 8 * sizeof(float));  
 ```
+
+# Advanced GLSL
+
+## GLSL's built-in variables
+
+最常用的 built-in 变量是 `gl_Position` 和 `gl_FragCoord`
+
+### Vertex Shader
+
+`gl_Position `其实是 vertex shader 在裁剪空间的输出
+
+`gl_PointSize`是比用点作为primitive，如`glDrawArrays(GL_POINTS, 0, 36)`绘制时，指定 point primitive 的大小
+
+<img src="images/advanced_glsl/advanced_glsl_pointsize.jpeg" alt="advanced_glsl_pointsize" style="zoom:70%;" />
+
+`gl_VertexID`只读变量，保存当前正在处理的 vertexID，当应用 indexed rendering，比如`glDrawElement`的时候
+
+### Fragment Shader
+
+`gl_FragCoord`，其实 depth test 就是比较的`gl_FragCoord.z`，其xy值的原点在屏幕左下角，这点要注意，通过判断 gl_FragCoord 的坐标可以将一块 fragment 按照不同策略渲染
+
+```cpp
+if(gl_FragCoord.x<400) {
+    FragColor = vec4(1, 0, 0, 1);
+}
+else {
+    FragColor = texture(texture1, TexCoords);
+}
+```
+
+<img src="images/advanced_glsl/advanced_glsl_fragcoord.jpeg" alt="advanced_glsl_fragcoord" style="zoom:70%;" />
+
+`gl_FrontFacing` : face_culling 的时候说到Opengl 会根据三角形是顺时针还是逆时针 winding 的来决定正面还是背面，`gl_FrontFacing`就表示当前 fragment 所在 primitive 是正面还是反面
+
+`gl_FragDepth` : `gl_FragCoord`中的值都是只读的，可以通过`gl_FragDepth`手动修改其z值，其中有个细节：如果往`gl_FragDepth`里面写值，OpenGL就会自动关闭 early depth test，会影响性能，因为多做了很多会被深度测试丢掉的渲染
+
+## Interface Blocks
+
+介绍了在 vertex shader 和 fragment shader 中传数据可以用 struct 更易于管理
+
+## Uniform Buffer Objects
+
+OpenGL中可以声明 uniform 变量，可供全部的 shader 使用，相当于存在GPU上的全局变量
+
+```cpp
+layout (std140) uniform ExampleBlock // 按照std(140)的layout声明uniform block
+{
+    float value;
+    vec3  vector;
+    mat4  matrix;
+    float values[3];
+    bool  boolean;
+    int   integer;
+};  
+```
+
+默认GLSL使用统一的内存布局(shared layout，硬件分配)，这样可以使用`glGetUniformIndices`来得到各个成员的 offset；虽然 shared layout 更节省空间，但是急需要取成员的index，效率比较低，一般会采用 std140 的 layout 规则，类似于cpp中的内存对齐规则。
+
+## Using Uniform Buffer
+
+```cpp
+unsigned int uboExampleBlock;
+glGenBuffers(1, &uboExampleBlock);
+glBindBuffer(GL_UNIFORM_BUFFER, uboExampleBlock);
+glBufferData(GL_UNIFORM_BUFFER, 152, NULL, GL_STATIC_DRAW); // allocate 152 bytes of memory
+glBindBuffer(GL_UNIFORM_BUFFER, 0);
+```
+
+用`glBufferSubData`更新 uniform buffer 的值，相应的 shader 都会实用更新后的值，下面是 shader 中的 uniform block 如何与OpenGL中的 uniform block object 对应关系：
+
+<img src="images/advanced_glsl/advanced_glsl_uniformblock.jpeg" alt="advanced_glsl_fragcoord" style="zoom:100%;" />
+
+可以通过 Opengl Context 的 Binding points 指定 uniform buffer 绑定到什么位置，然后通过：
+
+```cpp
+unsigned int lights_index = glGetUniformBlockIndex(shaderA.ID, "Lights");   
+glUniformBlockBinding(shaderA.ID, lights_index, 2);
+```
+
+将 shader 中的 uniform block 和 binding point 2 绑定起来。
+
+```cpp
+glBindBufferBase(GL_UNIFORM_BUFFER, 2, uboExampleBlock); 
+// or
+glBindBufferRange(GL_UNIFORM_BUFFER, 2, uboExampleBlock, 0, 152);
+```
+
+要修改 uniform buffer 中的数据：
+
+```cpp
+glBindBuffer(GL_UNIFORM_BUFFER, uboExampleBlock);
+int b = true; // bools in GLSL are represented as 4 bytes, so we store it in an integer
+glBufferSubData(GL_UNIFORM_BUFFER, 144, 4, &b); 
+glBindBuffer(GL_UNIFORM_BUFFER, 0);
+```
+
+## A Simple Example
+
+.vs
+
+```cpp
+#version 330 core
+layout (location = 0) in vec3 aPos;
+layout (std140) uniform Matrices {
+    mat4 projection;
+    mat4 view;
+};
+uniform mat4 model;
+
+void main() {
+    gl_Position = projection * view * model * vec4(aPos, 1.0);
+}  
+
+```
+
+cpp
+
+```cpp
+unsigned int uniform_block_red_index = glGetUniformBlockIndex(shader_red.ID, "Matrices");
+glUniformBlockBinding(shader_red.ID, uniform_block_red_index, 0);
+// bind other sahders to ubo_idx0
+
+// create ubo and bind to GL_UNIFORM_BUFFER
+unsigned int ubo_matrices;
+glGenBuffers(1, &ubo_matrices);
+glBindBuffer(GL_UNIFORM_BUFFER, ubo_matrices);
+glBufferData(GL_UNIFORM_BUFFER, 2 * sizeof(glm::mat4), NULL, GL_STATIC_DRAW);
+glBindBuffer(GL_UNIFORM_BUFFER, 0);
+glBindBufferRange(GL_UNIFORM_BUFFER, 0, ubo_matrices, 0, 2 * sizeof(glm::mat4));
+
+// set uniform block
+glm::mat4 view = camera.GetViewMatrix();
+glBindBuffer(GL_UNIFORM_BUFFER, ubo_matrices);
+glBufferSubData(GL_UNIFORM_BUFFER, sizeof(glm::mat4), sizeof(glm::mat4), glm::value_ptr(view));
+glBindBuffer(GL_UNIFORM_BUFFER, 0);
+
+//render
+glBindVertexArray(cubeVAO);
+shaderRed.use();
+model = glm::mat4(1.0f);
+model = glm::translate(model, glm::vec3(-0.75f, 0.75f, 0.0f));
+shaderRed.setMat4("model", model);
+glDrawArrays(GL_TRIANGLES, 0, 36);        
+// ... draw ohter cubes 
+```
+
+
+
+<img src="images/advanced_glsl/advanced_glsl_ubo_example.jpeg" alt="advanced_glsl_fragcoord" style="zoom:100%;" />
 
