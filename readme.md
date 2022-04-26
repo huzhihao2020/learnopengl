@@ -657,3 +657,139 @@ float rand(vec2 co){
 }
 ```
 
+# Insctancing
+
+在画一些模型相同的物体时，可以共用一套顶点，前面我们都是这样写的：
+
+```cpp
+for(int i=0; i<ModelCounts; i++) {
+    DoSomeOperations(); // bindVAO, texture, set uniforms
+    glDrawArrays(GL_TRIANGLES, 0, amount_of_vertices);
+}
+```
+
+这样做其实是对GPU不友好的，因为每一次 drawcall (比如glDrawArrays 或者 glDrawElements) 都会吃掉一些性能，因为在真正画顶点数据之前 OpenGL 需要通过 CPU 与 GPU 通讯，把从哪个 buffer 读数据、顶点属性都有什么之类的信息通过 GPU 总线传递给 GPU。所以需要想个办法，一次 drawcall 把这些物体一次性画出来。
+
+`glDrawArrays` 和 `glDrawElements` 分别用 `glDrawArraysInstanced` 和 `glDrawElementsInstanced` 替代，然后结合 GLSL 在vertex shader中的 built-in 变量 `gl_InstanceID`，每调用一次这个绘制instance的函数，`gl_InstanceID` 就会增1，然后就可以索引每个 instance 的属性了
+
+```cpp
+// .vs
+#version 330 core
+layout (location = 0) in vec2 aPos;
+layout (location = 1) in vec3 aColor;
+
+out vec3 fColor;
+uniform vec2 offsets[100];
+
+void main() {
+    vec2 offset = offsets[gl_InstanceID];
+    gl_Position = vec4(aPos + offset, 0.0, 1.0);
+    fColor = aColor;
+}  
+
+// .cpp
+for(unsigned int i = 0; i < 100; i++) {
+    shader.setVec2(("offsets[" + std::to_string(i) + "]")), translations[i]);
+}  
+```
+
+<img src="images/instancing/instancing.jpeg" alt="advanced_glsl_fragcoord" style="zoom:100%;" />
+
+## Instanced arrays
+
+上个例子中是 100 个 instance，但是当实例数量远超过 100 的时候，可能 hit 到可以传输给 shader 的 uniform变量数量的 limit，这时可以用 instanced array。将 instance array 作为 vertex attribute 存储
+
+```cpp
+glEnableVertexAttribArray(2);
+glBindBuffer(GL_ARRAY_BUFFER, instanceVBO); // this attribute is from another buffer
+glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
+glBindBuffer(GL_ARRAY_BUFFER, 0);	
+glVertexAttribDivisor(2, 1);  // 请求的顶点属性，attribute divisor
+```
+
+像别的顶点属性一样，我们把 translations 当做顶点数据存储到 instanceVBO 中，不同的是`glVertexAttribDivisor(2, 1)`函数设置id=2的顶点属性的 attribute divisor 为1 (默认是0表示在渲染每个顶点的时候更新，1表示在渲染每个instance的时候更新)
+
+```cpp
+//.vs 
+vec2 pos = aPos * gl_InstanceID / 100.0; // 渐变缩小
+```
+
+
+
+<img src="images/instancing/instancing_array.jpeg" alt="advanced_glsl_fragcoord" style="zoom:100%;" />
+
+## Creating a Planet
+
+我在我们创建一个行星的场景，由一个星球模型加上一个石头模型的很多 instance 来构建这个场景，先采用把每个 rock 调用一次 drawcall 的方法：
+
+```cpp
+// draw planet
+shader.use();
+shader.setMat4("model", model);
+planet.Draw(shader);
+// draw meteorites
+for(unsigned int i = 0; i < amount; i++) {
+    shader.setMat4("model", modelMatrices[i]); // 利用rannd()创建沿一个半径随机分布的星带
+    rock.Draw(shader);
+}  
+```
+
+<img src="images/instancing/instancing_astroid_3000_25fps.jpeg" alt="instancing_astroid_3000_25fps" style="zoom:100%;" />
+
+当rock的数量增加到3000-5000时，明显感觉帧数下降，实测5000时只有25fps，下面用 instancing 的做法：
+
+```cpp
+//.vs
+#version 330 core
+layout (location = 0) in vec3 aPos;
+layout (location = 2) in vec2 aTexCoords;
+layout (location = 3) in mat4 instanceMatrix;
+
+out vec2 TexCoords;
+
+uniform mat4 projection;
+uniform mat4 view;
+
+void main()
+{
+    gl_Position = projection * view * instanceMatrix * vec4(aPos, 1.0); 
+    TexCoords = aTexCoords;
+}
+```
+
+我们把 instance 的模型变换矩阵当成 vertex attribute 传入 shader，但shader中的顶点属性最大是vec4类型的，而变换矩阵可以看做4个vec4，所以需要分4个 atteibute 传：
+
+```cpp
+glGenBuffers(1, &buffer);
+glBindBuffer(GL_ARRAY_BUFFER, buffer);
+glBufferData(GL_ARRAY_BUFFER, amount * sizeof(glm::mat4), &modelMatrices[0], GL_STATIC_DRAW);
+  
+for(unsigned int i = 0; i < rock.meshes.size(); i++) {
+    unsigned int VAO = rock.meshes[i].VAO;
+    glBindVertexArray(VAO);
+    // vertex attributes
+    std::size_t vec4Size = sizeof(glm::vec4);
+    glEnableVertexAttribArray(3); 
+    glVertexAttribPointer(3, 4, GL_FLOAT, GL_FALSE, 4 * vec4Size, (void*)0);
+    glEnableVertexAttribArray(4); 
+    glVertexAttribPointer(4, 4, GL_FLOAT, GL_FALSE, 4 * vec4Size, (void*)(1 * vec4Size));
+    glEnableVertexAttribArray(5); 
+    glVertexAttribPointer(5, 4, GL_FLOAT, GL_FALSE, 4 * vec4Size, (void*)(2 * vec4Size));
+    glEnableVertexAttribArray(6); 
+    glVertexAttribPointer(6, 4, GL_FLOAT, GL_FALSE, 4 * vec4Size, (void*)(3 * vec4Size));
+
+    glVertexAttribDivisor(3, 1);
+    glVertexAttribDivisor(4, 1);
+    glVertexAttribDivisor(5, 1);
+    glVertexAttribDivisor(6, 1);
+
+    glBindVertexArray(0);
+}  
+```
+
+这样即使有 20000 个rock，帧数也能达到接近50：
+
+<img src="images/instancing/instancing_astroid_10000_50fps.jpeg" alt="instancing_astroid_10000_50fps" style="zoom:100%;" />
+
+
+

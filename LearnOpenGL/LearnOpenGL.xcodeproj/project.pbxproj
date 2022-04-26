@@ -123,6 +123,19 @@
 		7E12488928159D18008F5D2A /* libassimp.5.1.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EF32F7927F1485C00B10078 /* libassimp.5.1.4.dylib */; };
 		7E12488F28159D38008F5D2A /* geometry_shader_explode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E12486428159D00008F5D2A /* geometry_shader_explode.cpp */; };
 		7E1248942815A22B008F5D2A /* geometry_shader_normal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E1248902815A226008F5D2A /* geometry_shader_normal.cpp */; };
+		7E12489828164BA6008F5D2A /* instancing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E12489728164BA5008F5D2A /* instancing.cpp */; };
+		7E12489E28177CBF008F5D2A /* imgui_draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EF327D4E8E600B10078 /* imgui_draw.cpp */; };
+		7E12489F28177CBF008F5D2A /* imgui_tables.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EF427D4E8E600B10078 /* imgui_tables.cpp */; };
+		7E1248A028177CBF008F5D2A /* imgui_widgets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EF227D4E8E600B10078 /* imgui_widgets.cpp */; };
+		7E1248A128177CBF008F5D2A /* imgui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EEE27D4E7CA00B10078 /* imgui.cpp */; };
+		7E1248A228177CBF008F5D2A /* imgui_impl_glfw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EE927D4E6CF00B10078 /* imgui_impl_glfw.cpp */; };
+		7E1248A428177CBF008F5D2A /* imgui_impl_opengl3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EEB27D4E6CF00B10078 /* imgui_impl_opengl3.cpp */; };
+		7E1248A528177CBF008F5D2A /* glad.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD3F1627BDE60D0039E0D8 /* glad.c */; };
+		7E1248A728177CBF008F5D2A /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3EFE27BC1CA60039E0D8 /* CoreFoundation.framework */; platformFilter = maccatalyst; };
+		7E1248A828177CBF008F5D2A /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0227BC1DBD0039E0D8 /* libglfw.3.3.dylib */; };
+		7E1248A928177CBF008F5D2A /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0027BC1CD30039E0D8 /* OpenGL.framework */; };
+		7E1248AA28177CBF008F5D2A /* libassimp.5.1.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EF32F7927F1485C00B10078 /* libassimp.5.1.4.dylib */; };
+		7E1248B028177DCE008F5D2A /* instancing_astroid_field.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E12489B28177CB8008F5D2A /* instancing_astroid_field.cpp */; };
 		7E154CB3281242DB003FDEEA /* cubemaps.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E154CB0281242D3003FDEEA /* cubemaps.cpp */; };
 		7E154CB82813C60B003FDEEA /* imgui_draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EF327D4E8E600B10078 /* imgui_draw.cpp */; };
 		7E154CB92813C60B003FDEEA /* imgui_tables.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EF427D4E8E600B10078 /* imgui_tables.cpp */; };
@@ -406,6 +419,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		7E1248AB28177CBF008F5D2A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		7E154CC42813C60B003FDEEA /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -633,6 +655,14 @@
 		7E1248912815A226008F5D2A /* geometry_shader_normal.gs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = geometry_shader_normal.gs; sourceTree = "<group>"; };
 		7E1248922815A226008F5D2A /* geometry_shader_normal.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = geometry_shader_normal.vs; sourceTree = "<group>"; };
 		7E1248932815A227008F5D2A /* geometry_shader_normal.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = geometry_shader_normal.fs; sourceTree = "<group>"; };
+		7E12489528164BA5008F5D2A /* instancing.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = instancing.fs; sourceTree = "<group>"; };
+		7E12489628164BA5008F5D2A /* instancing.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = instancing.vs; sourceTree = "<group>"; };
+		7E12489728164BA5008F5D2A /* instancing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = instancing.cpp; sourceTree = "<group>"; };
+		7E12489928177CB7008F5D2A /* instancing_astroid_field.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = instancing_astroid_field.fs; sourceTree = "<group>"; };
+		7E12489A28177CB8008F5D2A /* instancing_astroid_field.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = instancing_astroid_field.vs; sourceTree = "<group>"; };
+		7E12489B28177CB8008F5D2A /* instancing_astroid_field.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = instancing_astroid_field.cpp; sourceTree = "<group>"; };
+		7E1248AF28177CBF008F5D2A /* instancing_astroid_field */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = instancing_astroid_field; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E1248B128178D7E008F5D2A /* instancing_astroid_field_instance.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = instancing_astroid_field_instance.vs; sourceTree = "<group>"; };
 		7E154CAE2811B450003FDEEA /* framebuffers_quad.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = framebuffers_quad.vs; sourceTree = "<group>"; };
 		7E154CAF2811B450003FDEEA /* framebuffers_quad.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = framebuffers_quad.fs; sourceTree = "<group>"; };
 		7E154CB0281242D3003FDEEA /* cubemaps.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = cubemaps.cpp; sourceTree = "<group>"; };
@@ -956,6 +986,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7E1248A628177CBF008F5D2A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E1248A728177CBF008F5D2A /* CoreFoundation.framework in Frameworks */,
+				7E1248A828177CBF008F5D2A /* libglfw.3.3.dylib in Frameworks */,
+				7E1248A928177CBF008F5D2A /* OpenGL.framework in Frameworks */,
+				7E1248AA28177CBF008F5D2A /* libassimp.5.1.4.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7E154CBF2813C60B003FDEEA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1273,6 +1314,13 @@
 				7E1248932815A227008F5D2A /* geometry_shader_normal.fs */,
 				7E1248912815A226008F5D2A /* geometry_shader_normal.gs */,
 				7E1248922815A226008F5D2A /* geometry_shader_normal.vs */,
+				7E12489728164BA5008F5D2A /* instancing.cpp */,
+				7E12489528164BA5008F5D2A /* instancing.fs */,
+				7E12489628164BA5008F5D2A /* instancing.vs */,
+				7E1248B128178D7E008F5D2A /* instancing_astroid_field_instance.vs */,
+				7E12489B28177CB8008F5D2A /* instancing_astroid_field.cpp */,
+				7E12489928177CB7008F5D2A /* instancing_astroid_field.fs */,
+				7E12489A28177CB8008F5D2A /* instancing_astroid_field.vs */,
 				7E12486428159D00008F5D2A /* geometry_shader_explode.cpp */,
 				7E12486528159D00008F5D2A /* geometry_shader_explode.fs */,
 				7E12486328159D00008F5D2A /* geometry_shader_explode.gs */,
@@ -1390,6 +1438,7 @@
 				7E154CEE2813C613003FDEEA /* instancing */,
 				7E12487A28159D06008F5D2A /* geometry_shader_explode */,
 				7E12488E28159D18008F5D2A /* geometry_shader_normal */,
+				7E1248AF28177CBF008F5D2A /* instancing_astroid_field */,
 			);
 			name = Targets;
 			sourceTree = "<group>";
@@ -1731,6 +1780,23 @@
 			name = geometry_shader_normal;
 			productName = HelloTriangle;
 			productReference = 7E12488E28159D18008F5D2A /* geometry_shader_normal */;
+			productType = "com.apple.product-type.tool";
+		};
+		7E12489C28177CBF008F5D2A /* instancing_astroid_field */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7E1248AC28177CBF008F5D2A /* Build configuration list for PBXNativeTarget "instancing_astroid_field" */;
+			buildPhases = (
+				7E12489D28177CBF008F5D2A /* Sources */,
+				7E1248A628177CBF008F5D2A /* Frameworks */,
+				7E1248AB28177CBF008F5D2A /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = instancing_astroid_field;
+			productName = HelloTriangle;
+			productReference = 7E1248AF28177CBF008F5D2A /* instancing_astroid_field */;
 			productType = "com.apple.product-type.tool";
 		};
 		7E154CB62813C60B003FDEEA /* advanced_glsl */ = {
@@ -2114,6 +2180,7 @@
 				7E154CDC2813C613003FDEEA /* instancing */,
 				7E12486728159D06008F5D2A /* geometry_shader_explode */,
 				7E12487B28159D18008F5D2A /* geometry_shader_normal */,
+				7E12489C28177CBF008F5D2A /* instancing_astroid_field */,
 			);
 		};
 /* End PBXProject section */
@@ -2274,6 +2341,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7E12489D28177CBF008F5D2A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E12489E28177CBF008F5D2A /* imgui_draw.cpp in Sources */,
+				7E1248B028177DCE008F5D2A /* instancing_astroid_field.cpp in Sources */,
+				7E12489F28177CBF008F5D2A /* imgui_tables.cpp in Sources */,
+				7E1248A028177CBF008F5D2A /* imgui_widgets.cpp in Sources */,
+				7E1248A128177CBF008F5D2A /* imgui.cpp in Sources */,
+				7E1248A228177CBF008F5D2A /* imgui_impl_glfw.cpp in Sources */,
+				7E1248A428177CBF008F5D2A /* imgui_impl_opengl3.cpp in Sources */,
+				7E1248A528177CBF008F5D2A /* glad.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7E154CB72813C60B003FDEEA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2313,6 +2395,7 @@
 				7E154CE02813C613003FDEEA /* imgui_widgets.cpp in Sources */,
 				7E154CE12813C613003FDEEA /* imgui.cpp in Sources */,
 				7E154CE22813C613003FDEEA /* imgui_impl_glfw.cpp in Sources */,
+				7E12489828164BA6008F5D2A /* instancing.cpp in Sources */,
 				7E154CE32813C613003FDEEA /* imgui_impl_opengl3.cpp in Sources */,
 				7E154CE42813C613003FDEEA /* glad.c in Sources */,
 			);
@@ -2751,6 +2834,26 @@
 			name = Debug;
 		};
 		7E12488D28159D18008F5D2A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = "${inherited}";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		7E1248AD28177CBF008F5D2A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = "${inherited}";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		7E1248AE28177CBF008F5D2A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -3382,6 +3485,15 @@
 			buildConfigurations = (
 				7E12488C28159D18008F5D2A /* Debug */,
 				7E12488D28159D18008F5D2A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7E1248AC28177CBF008F5D2A /* Build configuration list for PBXNativeTarget "instancing_astroid_field" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E1248AD28177CBF008F5D2A /* Debug */,
+				7E1248AE28177CBF008F5D2A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
