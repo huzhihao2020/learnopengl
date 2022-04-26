@@ -793,3 +793,67 @@ for(unsigned int i = 0; i < rock.meshes.size(); i++) {
 
 
 
+# Anti-Aliasing
+
+图像放大观察到边缘呈锯齿状
+
+<img src="images/Anti-Aliasing/Anti-Aliasing.jpeg" alt="Anti-Aliasing" style="zoom:60%;" />
+
+
+
+## Multi-Sampling
+
+简称 MSAA，不同于 SSAA 的地方在于不用每个 subsample 都运行 fragment shader。
+
+4X MSAA 用 4 倍大小的 depth/stencil buffer 来进行 depth/stencil test 来计算 subsample 的覆盖率，framebuffer 其实也是 4 倍的大小，用来存储每个 subsample 对本像素颜色的贡献。但是重点在于每个像素里的每个 primitive 只会走一次 fragment shader.
+
+## MSAA in OpenGL
+
+OpenGL 里可以选择采样 multi-sample，这样在每个像素点处会采集4个 subsamples
+
+```cpp
+glfwWindowHint(GLFW_SAMPLES, 4);
+glEnable(GL_MULTISAMPLE); 
+```
+
+<img src="images/Anti-Aliasing/Anti-Aliasing_MSAA.jpeg" alt="Aliasing_MSAA.jpeg" style="zoom:60%;" />
+
+## Off-screen MSAA
+
+由于 GLFW 负责创建 multi-sample buffer，所以启用 MSAA很简单，但如果想在 framebuffer 中启用 multi-sample，需要自己手动创建 multisampled buffers。
+
+回顾 framebuffer 那一节，有两种方法：texture attachments 和 renderbuffer attachments
+
+* multisampled texture attachments  就是把 `GL_TEXTURE_2D` 变成 `GL_TEXTURE_2D_MULTISAMPLE`
+
+  ```cpp
+  glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, tex);
+  glTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, samples, GL_RGB, width, height, GL_TRUE); // samples 是采样总数量，最后一个参数设置为true表示每个像素都用相同的子采样 pattern
+  glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, 0);  
+  glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D_MULTISAMPLE, tex, 0);
+  ```
+
+  现在绑定的 framebuffer 就是一个 multi-sampled color buuffer
+  
+* multisampled renderbuffer objects
+  同样只需要将 `glRenderbufferStorage` 变成 `glRenderbufferStorageMultisample` 
+
+  ```cpp
+  glRenderbufferStorageMultisample(GL_RENDERBUFFER, 4, GL_DEPTH24_STENCIL8, width, height); 
+  ```
+
+下面介绍如何向 multiple-sampled framebuffer 输出渲染结果：
+
+`glBlitFramebuffer` 可以在 framebuffer 之间进行数据 copy，同时 resolve 一个 multisampled framebuffer，
+
+```cpp
+glBindFramebuffer(GL_READ_FRAMEBUFFER, multisampledFBO);
+glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
+glBlitFramebuffer(0, 0, width, height, 0, 0, width, height, GL_COLOR_BUFFER_BIT, GL_NEAREST); 
+```
+
+上面的步骤将 multisampledFBO 传给了 default framebuffer (id=0)，这样也可以在屏幕上得到 MSAA 处理后的图像。
+
+## Post-process with multi-sampling
+
+我们得到的 multisampled-texture 不能直接在 fragment shader 中使用，需要通过 `glBlitFramebuffer`将 multisampled buffer 中数据传给 non-multisampled texture attachment 然后像正常 framebuffer 那样处理。

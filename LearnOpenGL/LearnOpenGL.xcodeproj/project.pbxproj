@@ -136,6 +136,7 @@
 		7E1248A928177CBF008F5D2A /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0027BC1CD30039E0D8 /* OpenGL.framework */; };
 		7E1248AA28177CBF008F5D2A /* libassimp.5.1.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EF32F7927F1485C00B10078 /* libassimp.5.1.4.dylib */; };
 		7E1248B028177DCE008F5D2A /* instancing_astroid_field.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E12489B28177CB8008F5D2A /* instancing_astroid_field.cpp */; };
+		7E1248B52817DDE0008F5D2A /* anti-aliasing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E1248B22817DDDF008F5D2A /* anti-aliasing.cpp */; };
 		7E154CB3281242DB003FDEEA /* cubemaps.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E154CB0281242D3003FDEEA /* cubemaps.cpp */; };
 		7E154CB82813C60B003FDEEA /* imgui_draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EF327D4E8E600B10078 /* imgui_draw.cpp */; };
 		7E154CB92813C60B003FDEEA /* imgui_tables.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EF427D4E8E600B10078 /* imgui_tables.cpp */; };
@@ -663,6 +664,9 @@
 		7E12489B28177CB8008F5D2A /* instancing_astroid_field.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = instancing_astroid_field.cpp; sourceTree = "<group>"; };
 		7E1248AF28177CBF008F5D2A /* instancing_astroid_field */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = instancing_astroid_field; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E1248B128178D7E008F5D2A /* instancing_astroid_field_instance.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = instancing_astroid_field_instance.vs; sourceTree = "<group>"; };
+		7E1248B22817DDDF008F5D2A /* anti-aliasing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "anti-aliasing.cpp"; sourceTree = "<group>"; };
+		7E1248B32817DDDF008F5D2A /* anti-aliasing.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "anti-aliasing.vs"; sourceTree = "<group>"; };
+		7E1248B42817DDE0008F5D2A /* anti-aliasing.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "anti-aliasing.fs"; sourceTree = "<group>"; };
 		7E154CAE2811B450003FDEEA /* framebuffers_quad.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = framebuffers_quad.vs; sourceTree = "<group>"; };
 		7E154CAF2811B450003FDEEA /* framebuffers_quad.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = framebuffers_quad.fs; sourceTree = "<group>"; };
 		7E154CB0281242D3003FDEEA /* cubemaps.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = cubemaps.cpp; sourceTree = "<group>"; };
@@ -1310,6 +1314,9 @@
 		7E3FBB3D280E5C4F00E4E92B /* Advanced */ = {
 			isa = PBXGroup;
 			children = (
+				7E1248B22817DDDF008F5D2A /* anti-aliasing.cpp */,
+				7E1248B42817DDE0008F5D2A /* anti-aliasing.fs */,
+				7E1248B32817DDDF008F5D2A /* anti-aliasing.vs */,
 				7E1248902815A226008F5D2A /* geometry_shader_normal.cpp */,
 				7E1248932815A227008F5D2A /* geometry_shader_normal.fs */,
 				7E1248912815A226008F5D2A /* geometry_shader_normal.gs */,
@@ -2268,6 +2275,7 @@
 				7E0060A928106AB7004320D6 /* imgui_draw.cpp in Sources */,
 				7E0060AA28106AB7004320D6 /* imgui_tables.cpp in Sources */,
 				7E0060AB28106AB7004320D6 /* imgui_widgets.cpp in Sources */,
+				7E1248B52817DDE0008F5D2A /* anti-aliasing.cpp in Sources */,
 				7E0060AC28106AB7004320D6 /* imgui.cpp in Sources */,
 				7E0060AD28106AB7004320D6 /* imgui_impl_glfw.cpp in Sources */,
 				7E0060AE28106AB7004320D6 /* imgui_impl_opengl3.cpp in Sources */,
