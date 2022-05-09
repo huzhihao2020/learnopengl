@@ -5,7 +5,6 @@
 ```c++
 glEnable(GL_DEPTH_TEST); // 开启深度测试
 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // 每帧清空一下对应的buffer
-
 ```
 
 <img src="images/depth_test/scene.jpeg" alt="scene" style="zoom:100%;" />
@@ -857,3 +856,125 @@ glBlitFramebuffer(0, 0, width, height, 0, 0, width, height, GL_COLOR_BUFFER_BIT,
 ## Post-process with multi-sampling
 
 我们得到的 multisampled-texture 不能直接在 fragment shader 中使用，需要通过 `glBlitFramebuffer`将 multisampled buffer 中数据传给 non-multisampled texture attachment 然后像正常 framebuffer 那样处理。
+
+# Shadow Mapping
+
+shadow map 的概念就是在光源处先进行一次渲染，得到 shadow map，存储每个 fragment 对应的深度信息，然后在相机处渲染时，与 shadow map 中的深度进行比较判断是否在阴影里，原理图：
+
+<img src="images/shadow_mapping/shadow_mapping.jpeg" alt="shadow_mapping.jpeg" style="zoom:100%;" />
+
+## Depth Map
+
+第一趟 pass 要在光源的位置生成一张 depth map，可以用 frame buffer 保存：
+
+```cpp
+// generate depth map
+unsigned int depthMapFBO;
+glGenFramebuffers(1, &depthMapFBO); 
+
+const unsigned int SHADOW_WIDTH = 1024, SHADOW_HEIGHT = 1024;
+unsigned int depthMap;
+glGenTextures(1, &depthMap);
+glBindTexture(GL_TEXTURE_2D, depthMap);
+glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, 
+             SHADOW_WIDTH, SHADOW_HEIGHT, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
+glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT); 
+glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);  
+
+// attach to depth buffer
+glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
+glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthMap, 0);
+glDrawBuffer(GL_NONE); //不需要写颜色
+glReadBuffer(GL_NONE);
+glBindFramebuffer(GL_FRAMEBUFFER, 0);  
+```
+
+第二趟 pass 要根据 shadow map 判断 fragment 是否在阴影中
+
+```cpp
+float shadow = ShadowCalculation(fs_in.FragPosLightSpace);
+vec3 lighting = (ambient + (1.0 - shadow) * (diffuse + specular)) * color; 
+```
+
+scene:
+
+<img src="images/shadow_mapping/shadow_mapping_scene.jpeg" alt="shadow_mapping_scene.jpeg" style="zoom:80%;" />
+
+会形成 artifacts，一些周期性的条纹：
+
+<img src="images/shadow_mapping/shadow_mapping_with_artifacts.jpeg" alt="shadow_mapping_with_artifacts.jpeg" style="zoom:100%;" />
+
+形成的原因 ：
+
+<img src="images/shadow_mapping/shadow_mapping_artifacts_cause.jpeg" alt="shadow_mapping_artifacts_cause.jpeg" style="zoom:100%;" />
+
+为了解决  shadow map 受 resolution 限制出现的 self-shadowing，通常采用加一个 bias 的方法，可以是常数，也可以与表面的角度相关：
+
+```cpp
+// constant bias 0.005
+float shadow = currentDepth - 0.005 > closestDepth  ? 1.0 : 0.0;  
+// bias change with surface angle
+float bias = max(0.05 * (1.0 - dot(normal, lightDir)), 0.005);  
+```
+
+## Peter Panning
+
+加了 bias 必然会导致物体根部与影子分离，这种情况叫做 peter panning:
+
+<img src="images/shadow_mapping/shadow_mapping_peterpanning.jpeg" alt="shadow_mapping_peterpanning.jpeg" style="zoom:60%;" />
+
+一种解决方案是在生成 depth map 时采用 front face culling：
+
+```cpp
+glCullFace(GL_FRONT);
+RenderSceneToDepthMap();
+glCullFace(GL_BACK); // don't forget to reset original culling face
+```
+
+## Over Sampling
+
+在场景中转动视角可以发现远处有一块区域是在阴影中的：
+
+<img src="images/shadow_mapping/shadow_mapping_over_sampling.jpeg" alt="shadow_mapping_over_sampling.jpeg" style="zoom:100%;" />
+
+这是因为那块区域在我们在光源处的 ortho_projection 形成的 frustum 之外，深度记录值是>1的，所以用这个大于1的值与 view frustum 中的深度比较，肯定是略大的，就会判断在阴影中，要解决这个问题，需要在fragment shader 中将深度大于1的情况考虑到
+
+```cpp
+if(project_coords.z > 1.0) return 0;
+```
+
+## PCF
+
+全程 Percentage-closer Filtering，一种生成 soft shadow 的方法。参考 RTR4
+
+还是因为 depth map 精度不足的问题，生成的阴影会有比较大的锯齿，最直接的办法是提高 depth map 的精度，或者将光源放的尽可能靠近场景，但是通常很难通过这个方法提高阴影质量。
+
+PCF 的简单实现：
+
+```cpp
+vec2 shadow_map_size = 1.0 / textureSize(shadow_map, 0);
+for(int x=-1; x<=1; x++) {
+    for(int y=-1; y<=1; y++) {
+        float closest_depth = 
+            texture(shadow_map, project_coords.xy + vec2(x,y) * shadow_map_size).r;
+        shadow += current_depth-bias > closest_depth ? 1.0 : 0.0;
+    }
+}
+return shadow / 9.0f;
+```
+
+效果：
+
+<img src="images/shadow_mapping/shadow_mapping_pcf.jpeg" alt="shadow_mapping_pcf.jpeg" style="zoom:100%;" />
+
+可以改用更大的 filter 来改善 pcf 的效果
+
+## Orthographic vs. Perspective
+
+在生成 depth map 的时候有两种投影方式，正交或者透视：
+
+<img src="images/shadow_mapping/shadow_mapping_ortho_vs_perpective.jpeg" alt="shadow_mapping_ortho_vs_perpective.jpeg" style="zoom:100%;" />
+
+direct light  一般用正交投影，有具体位置的光源(omni、spot)一般用透视投影；透视投影变换过后，z值不再是线性的，需要通过 depth test 那里介绍的转换得到线性的深度值
