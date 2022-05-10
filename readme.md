@@ -1035,4 +1035,22 @@ shadow /= n * n * n;
 
 用一些更好的采样策略可以用更少的采样点得到更好更快的结果：
 
-<img src="images/point_shadow/point_shadow_pcf_faster.jpeg" alt="point_shadow_pcf_faster.jpeg" style="zoom:100%;" />
+
+
+# Normal Mapping
+
+原理不赘述了，原文章写的很好，特别是切线空间的推理那一部分
+
+不采用 normal_map：
+
+<img src="images/normal_map/normal_map_off.jpeg" alt="normal_map_off.jpeg" style="zoom:100%;" />
+
+采用 normal_map：
+
+<img src="images/normal_map/normal_map_on.jpeg" alt="normal_map_on.jpeg" style="zoom:100%;" />
+
+需要注意的是，比较了两种 shading 方式：
+
+一种是在world space 计算光照，需要在 vertex shader 中计算好 TBN 矩阵并将(TBN)^-1^传给 fragment shader，因为 fragment shader 直接从法线贴图中获取的值是切线空间的值，需要乘 (TBN)^-1^变换到 world space 计算光照。
+
+第一种方式在 fragment shader 中有一次矩阵的计算，而 fragment shader 比 vertex shader 更“宝贵”，为了效率考虑将光照计算转移到切线空间，这样就需要将`FragPos`、 `view_pos` 和  `light_pos` 都乘 TBN 传给fragment shader
