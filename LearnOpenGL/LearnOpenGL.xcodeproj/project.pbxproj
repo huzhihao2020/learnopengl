@@ -216,6 +216,18 @@
 		7E53E38E28283EB20031BF08 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0027BC1CD30039E0D8 /* OpenGL.framework */; };
 		7E53E38F28283EB20031BF08 /* libassimp.5.1.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EF32F7927F1485C00B10078 /* libassimp.5.1.4.dylib */; };
 		7E53E39528283F390031BF08 /* shadow_mapping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E53E37F28283E9E0031BF08 /* shadow_mapping.cpp */; };
+		7E53E3A5282988190031BF08 /* imgui_draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EF327D4E8E600B10078 /* imgui_draw.cpp */; };
+		7E53E3A6282988190031BF08 /* imgui_tables.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EF427D4E8E600B10078 /* imgui_tables.cpp */; };
+		7E53E3A7282988190031BF08 /* imgui_widgets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EF227D4E8E600B10078 /* imgui_widgets.cpp */; };
+		7E53E3A8282988190031BF08 /* imgui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EEE27D4E7CA00B10078 /* imgui.cpp */; };
+		7E53E3A9282988190031BF08 /* imgui_impl_glfw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EE927D4E6CF00B10078 /* imgui_impl_glfw.cpp */; };
+		7E53E3AA282988190031BF08 /* imgui_impl_opengl3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EEB27D4E6CF00B10078 /* imgui_impl_opengl3.cpp */; };
+		7E53E3AB282988190031BF08 /* glad.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD3F1627BDE60D0039E0D8 /* glad.c */; };
+		7E53E3AD282988190031BF08 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3EFE27BC1CA60039E0D8 /* CoreFoundation.framework */; platformFilter = maccatalyst; };
+		7E53E3AE282988190031BF08 /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0227BC1DBD0039E0D8 /* libglfw.3.3.dylib */; };
+		7E53E3AF282988190031BF08 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0027BC1CD30039E0D8 /* OpenGL.framework */; };
+		7E53E3B0282988190031BF08 /* libassimp.5.1.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EF32F7927F1485C00B10078 /* libassimp.5.1.4.dylib */; };
+		7E53E3B7282A1CDB0031BF08 /* point_shadow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E53E3B6282988420031BF08 /* point_shadow.cpp */; };
 		7EAD3EF727BC1C7F0039E0D8 /* 2.HelloTriangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD3EF627BC1C7F0039E0D8 /* 2.HelloTriangle.cpp */; };
 		7EAD3EFF27BC1CA60039E0D8 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3EFE27BC1CA60039E0D8 /* CoreFoundation.framework */; platformFilter = maccatalyst; };
 		7EAD3F0327BC1DBD0039E0D8 /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0227BC1DBD0039E0D8 /* libglfw.3.3.dylib */; };
@@ -522,6 +534,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		7E53E3B1282988190031BF08 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		7EAD3EF127BC1C7F0039E0D8 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -815,6 +836,13 @@
 		7E53E397282847FF0031BF08 /* shadow_mapping_depth.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shadow_mapping_depth.fs; sourceTree = "<group>"; };
 		7E53E3982828B1FF0031BF08 /* shadow_mapping_quad.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shadow_mapping_quad.vs; sourceTree = "<group>"; };
 		7E53E3992828B1FF0031BF08 /* shadow_mapping_quad.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shadow_mapping_quad.fs; sourceTree = "<group>"; };
+		7E53E39B2829880D0031BF08 /* point_shadow.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = point_shadow.vs; sourceTree = "<group>"; };
+		7E53E3A02829880D0031BF08 /* point_shadow.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = point_shadow.fs; sourceTree = "<group>"; };
+		7E53E3B5282988190031BF08 /* point_shadow */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = point_shadow; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E53E3B6282988420031BF08 /* point_shadow.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = point_shadow.cpp; sourceTree = "<group>"; };
+		7E53E3B8282A49E30031BF08 /* point_shadow_depth.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = point_shadow_depth.fs; sourceTree = "<group>"; };
+		7E53E3B9282A49E40031BF08 /* point_shadow_depth.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = point_shadow_depth.vs; sourceTree = "<group>"; };
+		7E53E3BC282A4AD00031BF08 /* point_shadow_depth.gs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = point_shadow_depth.gs; sourceTree = "<group>"; };
 		7EAD3EF327BC1C7F0039E0D8 /* 2.HelloTriangle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = 2.HelloTriangle; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EAD3EF627BC1C7F0039E0D8 /* 2.HelloTriangle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = 2.HelloTriangle.cpp; sourceTree = "<group>"; };
 		7EAD3EFE27BC1CA60039E0D8 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -1125,6 +1153,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7E53E3AC282988190031BF08 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E53E3AD282988190031BF08 /* CoreFoundation.framework in Frameworks */,
+				7E53E3AE282988190031BF08 /* libglfw.3.3.dylib in Frameworks */,
+				7E53E3AF282988190031BF08 /* OpenGL.framework in Frameworks */,
+				7E53E3B0282988190031BF08 /* libassimp.5.1.4.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7EAD3EF027BC1C7F0039E0D8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1253,6 +1292,7 @@
 		7E1248B7282270C2008F5D2A /* AdvancedLighting */ = {
 			isa = PBXGroup;
 			children = (
+				7E53E39A2829880C0031BF08 /* point_shadow */,
 				7E53E37D28283E720031BF08 /* shadow_mapping */,
 			);
 			path = AdvancedLighting;
@@ -1453,6 +1493,19 @@
 			path = shadow_mapping;
 			sourceTree = "<group>";
 		};
+		7E53E39A2829880C0031BF08 /* point_shadow */ = {
+			isa = PBXGroup;
+			children = (
+				7E53E3B8282A49E30031BF08 /* point_shadow_depth.fs */,
+				7E53E3BC282A4AD00031BF08 /* point_shadow_depth.gs */,
+				7E53E3B9282A49E40031BF08 /* point_shadow_depth.vs */,
+				7E53E39B2829880D0031BF08 /* point_shadow.vs */,
+				7E53E3A02829880D0031BF08 /* point_shadow.fs */,
+				7E53E3B6282988420031BF08 /* point_shadow.cpp */,
+			);
+			path = point_shadow;
+			sourceTree = "<group>";
+		};
 		7EAD3EEA27BC1C7F0039E0D8 = {
 			isa = PBXGroup;
 			children = (
@@ -1510,6 +1563,7 @@
 				7E12488E28159D18008F5D2A /* geometry_shader_normal */,
 				7E1248AF28177CBF008F5D2A /* instancing_astroid_field */,
 				7E53E39428283EB20031BF08 /* shadow_mapping */,
+				7E53E3B5282988190031BF08 /* point_shadow */,
 			);
 			name = Targets;
 			sourceTree = "<group>";
@@ -2023,6 +2077,23 @@
 			productReference = 7E53E39428283EB20031BF08 /* shadow_mapping */;
 			productType = "com.apple.product-type.tool";
 		};
+		7E53E3A2282988190031BF08 /* point_shadow */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7E53E3B2282988190031BF08 /* Build configuration list for PBXNativeTarget "point_shadow" */;
+			buildPhases = (
+				7E53E3A3282988190031BF08 /* Sources */,
+				7E53E3AC282988190031BF08 /* Frameworks */,
+				7E53E3B1282988190031BF08 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = point_shadow;
+			productName = HelloTriangle;
+			productReference = 7E53E3B5282988190031BF08 /* point_shadow */;
+			productType = "com.apple.product-type.tool";
+		};
 		7EAD3EF227BC1C7F0039E0D8 /* 2.HelloTriangle */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7EAD3EFA27BC1C7F0039E0D8 /* Build configuration list for PBXNativeTarget "2.HelloTriangle" */;
@@ -2270,6 +2341,7 @@
 				7E12487B28159D18008F5D2A /* geometry_shader_normal */,
 				7E12489C28177CBF008F5D2A /* instancing_astroid_field */,
 				7E53E38128283EB20031BF08 /* shadow_mapping */,
+				7E53E3A2282988190031BF08 /* point_shadow */,
 			);
 		};
 /* End PBXProject section */
@@ -2554,6 +2626,21 @@
 				7E53E38828283EB20031BF08 /* imgui_impl_glfw.cpp in Sources */,
 				7E53E38928283EB20031BF08 /* imgui_impl_opengl3.cpp in Sources */,
 				7E53E38A28283EB20031BF08 /* glad.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E53E3A3282988190031BF08 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E53E3B7282A1CDB0031BF08 /* point_shadow.cpp in Sources */,
+				7E53E3A5282988190031BF08 /* imgui_draw.cpp in Sources */,
+				7E53E3A6282988190031BF08 /* imgui_tables.cpp in Sources */,
+				7E53E3A7282988190031BF08 /* imgui_widgets.cpp in Sources */,
+				7E53E3A8282988190031BF08 /* imgui.cpp in Sources */,
+				7E53E3A9282988190031BF08 /* imgui_impl_glfw.cpp in Sources */,
+				7E53E3AA282988190031BF08 /* imgui_impl_opengl3.cpp in Sources */,
+				7E53E3AB282988190031BF08 /* glad.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3148,6 +3235,26 @@
 			};
 			name = Release;
 		};
+		7E53E3B3282988190031BF08 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = "${inherited}";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		7E53E3B4282988190031BF08 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = "${inherited}";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		7EAD3EF827BC1C7F0039E0D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -3700,6 +3807,15 @@
 			buildConfigurations = (
 				7E53E39228283EB20031BF08 /* Debug */,
 				7E53E39328283EB20031BF08 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7E53E3B2282988190031BF08 /* Build configuration list for PBXNativeTarget "point_shadow" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E53E3B3282988190031BF08 /* Debug */,
+				7E53E3B4282988190031BF08 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

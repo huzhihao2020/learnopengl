@@ -978,3 +978,61 @@ return shadow / 9.0f;
 <img src="images/shadow_mapping/shadow_mapping_ortho_vs_perpective.jpeg" alt="shadow_mapping_ortho_vs_perpective.jpeg" style="zoom:100%;" />
 
 direct light  一般用正交投影，有具体位置的光源(omni、spot)一般用透视投影；透视投影变换过后，z值不再是线性的，需要通过 depth test 那里介绍的转换得到线性的深度值
+
+# Point Shadow
+
+场景中的点光源如何在所有方向产生阴影？考虑与 cubemap 结合
+
+## Generating Depth Cubemap
+
+第一步需要将生成 shadow map 的部分改成 shadow cubemap
+
+```cpp
+// generate depth cubemap
+glBindTexture(GL_TEXTURE_CUBE_MAP, depthCubemap);
+for (unsigned int i = 0; i < 6; ++i)
+        glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_DEPTH_COMPONENT, 
+                     SHADOW_WIDTH, SHADOW_HEIGHT, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
+// attach depthcubemap to fbo
+glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
+glFramebufferTexture(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, depthCubemap, 0);
+glDrawBuffer(GL_NONE);
+glReadBuffer(GL_NONE);
+glBindFramebuffer(GL_FRAMEBUFFER, 0); 
+```
+
+第二步用 depth shader 进行 shadow cubemap 的渲染 ，因为在 light's view 需要向 cubemap 共六个方向生成阴影，所以可以利用 geometry shader 将每个三角形沿六个方向的透视投影变换到对应的 light space，geometry shader 中的内置变量 `gl_Layer` 可以指定`EmitPrimiitive()`对应到 cubemap 中的哪个面；fragment shader 中再将片元到光源的距离存到 `gl_FragDepth`中就得到一个完整的 depth cubemap
+
+将 shadow_cubemap 可视化：
+
+<img src="images/point_shadow/point_shadow_visualizing_shadow_cubemap.jpeg" alt="point_shadow_visualizing_shadow_cubemap.jpeg" style="zoom:100%;" />
+
+## Render With Depth Cubemap
+
+之后的操作就和普通 shadow map 差不多了，只不过  取 texture 是从cubemap 中取：
+
+<img src="images/point_shadow/point_shadow_render_with_shadow.jpeg" alt="point_shadow_render_with_shadow.jpeg" style="zoom:100%;" />
+
+## PCF
+
+从 cubemap 上查深度用的是：
+
+`closest_depth = texture(shadow_cubemap, light_to_frag).r;`
+
+应用 PC，可以对 light_to_frag 周围一个小方盒采样，变成：
+
+```cpp
+// n^3 个采样
+closest_depth = texture(shadow_cubemap, light_to_frag + vec3(dx, dy, dz)).r;
+shadow += current_depth - bias < closest_depth ? 1.0 : 0.0;
+//...
+shadow /= n * n * n;
+```
+
+效果还是不错的，但是帧率有点低：
+
+<img src="images/point_shadow/point_shadow_pcf.jpeg" alt="point_shadow_pcf.jpeg" style="zoom:100%;" />
+
+用一些更好的采样策略可以用更少的采样点得到更好更快的结果：
+
+<img src="images/point_shadow/point_shadow_pcf_faster.jpeg" alt="point_shadow_pcf_faster.jpeg" style="zoom:100%;" />
