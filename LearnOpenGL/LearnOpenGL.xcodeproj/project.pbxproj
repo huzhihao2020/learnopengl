@@ -204,6 +204,7 @@
 		7E48064127C73B00000D66E0 /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0227BC1DBD0039E0D8 /* libglfw.3.3.dylib */; };
 		7E48064227C73B00000D66E0 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAD3F0027BC1CD30039E0D8 /* OpenGL.framework */; };
 		7E48064827C73B12000D66E0 /* 4.Coordinates_2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E48063A27C73AF4000D66E0 /* 4.Coordinates_2D.cpp */; };
+		7E4E11222837FD95003EE8CB /* parallax_mapping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E4E11202837FD94003EE8CB /* parallax_mapping.cpp */; };
 		7E53E38328283EB20031BF08 /* imgui_draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EF327D4E8E600B10078 /* imgui_draw.cpp */; };
 		7E53E38428283EB20031BF08 /* imgui_tables.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EF427D4E8E600B10078 /* imgui_tables.cpp */; };
 		7E53E38528283EB20031BF08 /* imgui_widgets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32EF227D4E8E600B10078 /* imgui_widgets.cpp */; };
@@ -869,6 +870,9 @@
 		7E48064727C73B00000D66E0 /* 4.Coordinates_2D */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = 4.Coordinates_2D; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E48064927C73B5B000D66E0 /* 4.Coordinates_2D-3.3.shader.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = "4.Coordinates_2D-3.3.shader.fs"; sourceTree = "<group>"; };
 		7E48064A27C73B5B000D66E0 /* 4.Coordinates_2D-3.3.shader.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = "4.Coordinates_2D-3.3.shader.vs"; sourceTree = "<group>"; };
+		7E4E111F2837FD94003EE8CB /* parallax_mapping.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = parallax_mapping.vs; sourceTree = "<group>"; };
+		7E4E11202837FD94003EE8CB /* parallax_mapping.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = parallax_mapping.cpp; sourceTree = "<group>"; };
+		7E4E11212837FD95003EE8CB /* parallax_mapping.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = parallax_mapping.fs; sourceTree = "<group>"; };
 		7E53E37E28283E9E0031BF08 /* shadow_mapping.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shadow_mapping.vs; sourceTree = "<group>"; };
 		7E53E37F28283E9E0031BF08 /* shadow_mapping.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = shadow_mapping.cpp; sourceTree = "<group>"; };
 		7E53E38028283E9E0031BF08 /* shadow_mapping.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shadow_mapping.fs; sourceTree = "<group>"; };
@@ -1589,6 +1593,9 @@
 		7E53E3C1282AB0910031BF08 /* parallax_mapping */ = {
 			isa = PBXGroup;
 			children = (
+				7E4E11202837FD94003EE8CB /* parallax_mapping.cpp */,
+				7E4E11212837FD95003EE8CB /* parallax_mapping.fs */,
+				7E4E111F2837FD94003EE8CB /* parallax_mapping.vs */,
 			);
 			path = parallax_mapping;
 			sourceTree = "<group>";
@@ -2793,6 +2800,7 @@
 				7E53E3DB282AB09F0031BF08 /* imgui_widgets.cpp in Sources */,
 				7E53E3DC282AB09F0031BF08 /* imgui.cpp in Sources */,
 				7E53E3DD282AB09F0031BF08 /* imgui_impl_glfw.cpp in Sources */,
+				7E4E11222837FD95003EE8CB /* parallax_mapping.cpp in Sources */,
 				7E53E3DE282AB09F0031BF08 /* imgui_impl_opengl3.cpp in Sources */,
 				7E53E3DF282AB09F0031BF08 /* glad.c in Sources */,
 			);

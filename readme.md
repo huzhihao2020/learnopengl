@@ -1054,3 +1054,33 @@ shadow /= n * n * n;
 一种是在world space 计算光照，需要在 vertex shader 中计算好 TBN 矩阵并将(TBN)^-1^传给 fragment shader，因为 fragment shader 直接从法线贴图中获取的值是切线空间的值，需要乘 (TBN)^-1^变换到 world space 计算光照。
 
 第一种方式在 fragment shader 中有一次矩阵的计算，而 fragment shader 比 vertex shader 更“宝贵”，为了效率考虑将光照计算转移到切线空间，这样就需要将`FragPos`、 `view_pos` 和  `light_pos` 都乘 TBN 传给fragment shader
+
+# Parallax Mapping
+
+Parallax Mapping 和 Displacement Mapping 很接近，用一张纹理存储了顶点的位移量，一般称之为 Height Map，下面是应用 HeightMap 以及对应图像的例子
+
+<center>
+    <img src="./images/parallax_map/parallax_mapping_height_map.png" alt="parallax_mapping_height_map.jpeg" style="zoom:100%;" />
+    <img src="./images/parallax_map/parallax_mapping_plane_heightmap.png" alt="parallax_mapping_plane_heightmap.jpeg" style="zoom:60%;" />
+</center>
+
+Parallax Mapping 的巧妙之处在于，并不需要额外的顶点数据来表达深度，右边的图只用了两个三角形渲染，也就是说，渲染的时候没有改变原模型的复杂度。其原理其实是通过修改纹理坐标，改变视觉效果
+
+<center>
+    <img src="./images/parallax_map/parallax_mapping_plane_height.png" alt="parallax_mapping_plane_height.jpeg" style="zoom:60%;" />
+    <img src="./images/parallax_map/parallax_mapping_scaled_height.png" alt="parallax_mapping_scaled_height.jpeg" style="zoom:60%;" />
+</center>
+
+红色线代表表面的高度场，如果表面真的存在displacement，视线交于点B；但实际上会交于点A。核心问题是我们怎么通过A点的(u, v)来得到B点，Parallax mapping 原理示意图：
+
+<img src="./images/parallax_map/parallax_mapping_scaled_height.png" alt="parallax_mapping_scaled_height.png" style="zoom:100%;"/>
+
+Parallax mapping 原理：根据A点的高度H(A)来scaling视线向量V，得到P。需要注意因为需要满足旋转的场景，我们希望P是法线空间中的表示；这里的但是当表面的高度场变化过于剧烈 ，也会出现问题：
+
+<img src="./images/parallax_map/parallax_mapping_incorrect_p.png" alt="parallax_mapping_scaled_height.png" style="zoom:100%;"/>
+
+## 实现
+
+实际我们通常采用 displacement_map + normal_map 结合，因为 displacement_map 虽然从纹理的角度模拟了几何上的高度场，但是光照变化不会正确反映在图像上，所以配合 normal_map 可以让光照看起来更真实。
+
+<img src="./images/parallax_map/parrallax_mapping_result.jpeg" alt="parrallax_mapping_result.jpeg" style="zoom:100%;"/>
